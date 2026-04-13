@@ -20,7 +20,7 @@ class Settings:
                  batch_size = 4, n_splits = 5, min_events = 3, hidden_size = 128, embedding_size=128, num_epochs=10,
                  lang='EN'):
         self.selected_patient_ids = []
-        self.data_file = datafile
+        self.datafile = datafile
         self.num_epochs = num_epochs
         self.embedding_dim = embedding_size
         self.hidden_dim = hidden_size
@@ -60,290 +60,25 @@ class Settings:
             self.is_splenectomized_field='splenectomizzato'
         self.splenectomized = self.yes_answer
 
-        
-class SettingsWidget:
-    def __init__(self, args):
-        self.args = args
+        try:
+            dataset = pd.read_json(self.datafile).set_index('id')
+            self.dataset_orig = dataset
+            self.dataset = self.dataset_orig.copy()
 
-        self.data_file_widget = widgets.Text(
-            value=args.data_file,
-            description='Data file:',
-            layout=widgets.Layout(width='400px')
-        )
-
-        self.load_output = widgets.Output()
-        
-        self.num_epochs_widget = widgets.IntText(
-            value=args.num_epochs,
-            description='Num epochs:'
-        )
-        
-        self.embedding_dim_widget = widgets.IntText(
-            value=args.embedding_dim,
-            description='Embedding dim:'
-        )
-        
-        self.hidden_dim_widget = widgets.IntText(
-            value=args.hidden_dim,
-            description='Hidden dim:'
-        )
-        
-        self.batch_size_widget = widgets.IntText(
-            value=args.batch_size,
-            description='Batch size:'
-        )
-        
-        self.pooling_widget = widgets.Dropdown(
-            options=['mean', 'max', 'sum'],
-            value=args.pooling,
-            description='Pooling:'
-        )
-        
-        self.enable_plot_widget = widgets.Checkbox(
-            value=args.enable_plot,
-            description='Enable plot'
-        )
-        
-        self.with_static_widget = widgets.Checkbox(
-            value=args.with_static,
-            description='With static feats'
-        )
-
-        self.with_validation_widget = widgets.Checkbox(
-            value=args.with_validation,
-            description='With validation'
-        )
-
-        self.n_splits_widget = widgets.IntText(
-            value=args.n_splits,
-            description='N splits:'
-        )
-        
-        self.min_events_widget = widgets.IntText(
-            value=args.min_events,
-            description="Min Events:"
-        )
-
-        self.random_state_widget = widgets.IntText(
-            value=args.random_state,
-            description='Random state:'
-        )
-        
-        # Patologies widget - initially empty
-        self.patologies_widget = widgets.SelectMultiple(
-            options=[],
-            description='Patologies:',
-            rows=7,
-            layout=widgets.Layout(width='500px')
-        ) if not self.args.noselection else widgets.FloatText()
-
-        # Patologies widget - initially empty
-        self.methods_widget = widgets.SelectMultiple(
-            value=args.methods,
-            options=args.methods,
-            description='Methods:',
-            rows=4,
-            layout=widgets.Layout(width='evfields500px')
-        )
-
-        # Event field widget - initially empty
-        self.evfields_widget = widgets.SelectMultiple(
-            #value=args.evfields,
-            #options=[],
-            description='Event Fields:',
-            rows=4,
-            layout=widgets.Layout(width='500px')
-        )
-        
-        # Event field widget - initially empty
-        self.splenectomized_widget = widgets.SelectMultiple(
-            value=self.args.selected_spleen_flags,
-            options=[self.args.spleen_yes_flag, self.args.spleen_no_flag],
-            description='Splenectomized?:',
-            rows=2,
-            layout=widgets.Layout(width='500px')
-        ) if not self.args.noselection else widgets.FloatText()
-
-        #self.splenectomized_widget = widgets.Checkbox(
-        #    value=(args.splenectomized == self.args.yes_answer),
-        #    description='Splenectomized?'
-        #) if not self.args.noselection else widgets.FloatText()
-        
-        self.update_output = widgets.Output()
-
-        # Add observers for auto-update
-        for w in [
-            self.data_file_widget,
-            self.num_epochs_widget,
-            self.embedding_dim_widget,
-            self.hidden_dim_widget,
-            self.batch_size_widget,
-            self.pooling_widget,
-            self.enable_plot_widget,
-            self.with_static_widget,
-            self.with_validation_widget,
-            self.n_splits_widget,
-            self.min_events_widget,
-            self.random_state_widget,
-            self.patologies_widget,
-            self.methods_widget,
-            self.evfields_widget,
-            self.splenectomized_widget
-        ]:
-            w.observe(self.on_update_clicked, names='value')
-
-        # Add observer for data_file
-        self.data_file_widget.observe(self.on_load_dataset, names='value')
-        self.on_load_dataset({'name':'value', 'new': self.data_file_widget.value})
-
-    def display(self):
-        display(
-            widgets.VBox([
-                self.data_file_widget,
-                self.load_output,
-                self.num_epochs_widget,
-                self.embedding_dim_widget,
-                self.hidden_dim_widget,
-                self.batch_size_widget,
-                self.pooling_widget,
-                self.enable_plot_widget,
-                self.with_static_widget,
-                self.with_validation_widget,
-                self.n_splits_widget,
-                self.min_events_widget,
-                self.random_state_widget,
-                self.patologies_widget,
-                self.methods_widget,
-                self.evfields_widget,
-                self.splenectomized_widget,
-                self.update_output
-            ])
-        )
-    
-    def on_load_dataset(self, change):
-        with self.load_output:
-            clear_output()
-            try:
-                file_path = self.data_file_widget.value
-                dataset = pd.read_json(file_path).set_index('id')
-                self.args.dataset_orig = dataset
-                self.args.dataset = self.args.dataset_orig.copy()
-
-                if not self.args.noselection:
-                    pathology_values = sorted(
-                        dataset[self.args.pathology_field].dropna().unique().tolist()
-                    )
-                
-                    self.patologies_widget.options = [(p, p) for p in pathology_values]
-                    self.patologies_widget.value = pathology_values if len(self.args.patologies) == 0 else self.args.patologies
-                
-                evfvalues = list(dataset.iloc[0][self.args.events_field][0].keys())
-                self.evfields_widget.options = [(p, p) for p in evfvalues] 
-                self.evfields_widget.value = evfvalues if len(self.args.evfields) == 0 else self.args.evfields
-                print(f"Dataset loaded successfully from {file_path}")
-            except Exception as e:
-                print("Error loading dataset:", e)
-    
-    def on_update_clicked(self, change=None):
-        with self.update_output:
-            clear_output()
+            if not self.noselection:
+                pathology_values = sorted(
+                    dataset[self.pathology_field].dropna().unique().tolist()
+                )
+                self.patologies_widget.options = [(p, p) for p in pathology_values]
+                self.patologies_widget.value = pathology_values if len(self.patologies) == 0 else self.patologies
             
-            self.args.data_file = self.data_file_widget.value
-            self.args.num_epochs = self.num_epochs_widget.value
-            self.args.embedding_dim = self.embedding_dim_widget.value
-            self.args.hidden_dim = self.hidden_dim_widget.value
-            self.args.batch_size = self.batch_size_widget.value
-            self.args.pooling = self.pooling_widget.value
-            self.args.enable_plot = self.enable_plot_widget.value
-            self.args.with_static = self.with_static_widget.value
-            self.args.with_validation = self.with_validation_widget.value
-            self.args.n_splits = self.n_splits_widget.value
-            self.args.min_events = self.min_events_widget.value
-            self.args.random_state = self.random_state_widget.value
-            self.args.patologies = list(self.patologies_widget.value) if not self.args.noselection else []
-            self.args.methods= list(self.methods_widget.value)
-            #self.args.splenectomized = self.args.yes_answer if self.splenectomized_widget.value else "NO"
-            self.args.splenectomized = self.splenectomized_widget.value
-            self.args.random_state = self.random_state_widget.value
-            if len(self.evfields_widget.value) > 0:
-                self.args.evfields = self.evfields_widget.value
-            # Imposta il seme di tutti i moduli principali
-            os.environ['PYTHONHASHSEED'] = str(self.args.random_state)
-            random.seed(self.args.random_state)
-            np.random.seed(self.args.random_state)
-            torch.manual_seed(self.args.random_state)
-            torch.cuda.manual_seed_all(self.args.random_state)
+            evfvalues = list(dataset.iloc[0][self.events_field][0].keys())
+            self.evfields_widget.options = [(p, p) for p in evfvalues] 
+            self.evfields_widget.value = evfvalues if len(self.evfields) == 0 else self.evfields
+            print(f"Dataset loaded successfully from {self.datafile}")
+        except Exception as e:
+            print("Error loading dataset:", e)
 
-            if self.args.dataset is not None:
-                if self.args.noselection:
-                    self.args.selected_patient_ids = self.args.dataset.index.values
-                else:
-                    try:
-                        self.args.selected_patient_ids = self.args.dataset_orig[
-                            (self.args.dataset_orig[self.args.pathology_field].isin(self.args.patologies)) & 
-                            #(self.args.dataset_orig[self.args.is_splenectomized_field] == self.args.splenectomized)
-                            (self.args.dataset_orig[self.args.is_splenectomized_field].isin(self.args.splenectomized))
-                        ].index.values
-                    except Exception:
-                        self.args.selected_patient_ids = []
-                self.args.dataset = self.args.dataset_orig.copy().loc[self.args.selected_patient_ids]
-            else:
-                self.args.selected_patient_ids = []
-
-            print("Settings updated:")
-            for attr in vars(self.args):
-                if attr == "dataset_orig":
-                    continue
-                elif attr == "dataset":
-                    if self.args.dataset is not None:
-                        print(f"{attr}: loaded DataFrame with shape {self.args.dataset.shape}")
-                    else:
-                        print(f"{attr}: None")
-                elif attr == "selected_patient_ids":
-                    print(f"{attr}: {len(self.args.selected_patient_ids)} patients")
-                else:
-                    print(f"{attr}: {getattr(self.args, attr)}")
-                            
-    def get_settings(self):
-        return self.args
-
-def df_to_latex_bold(df, float_format="%.3f", with_cm=False):
-    """
-    Rende LaTeX da un DataFrame con metodi come indici e metriche come colonne.
-    Evidenzia in grassetto i massimi per ogni metrica numerica.
-    """
-    df_copy = df.copy().astype(object)
-
-    for col in df.columns:
-        if col == "CM" and with_cm:
-            # Riformatta la confusion matrix in due righe
-            new_cm = []
-            for cm in df[col]:
-                try:
-                    formatted = (
-                        f"\cm{{{cm[0][0]}}}{{{cm[0][1]}}}{{{cm[1][0]}}}{{{cm[1][1]}}}{{A}}{{D}}{{{cm[0][0]+cm[0][1]}}}{{{cm[1][0]+cm[1][1]}}}"
-                    )
-                except Exception:
-                    formatted = str(cm)
-                new_cm.append(formatted)
-            df_copy[col] = new_cm
-        else:
-            if pd.api.types.is_numeric_dtype(df[col]):
-                if col.endswith(' mean'):
-                    colname = col.rstrip(' mean')
-                    max_val = df[col].max()
-                    for idx in df.index:
-                        val = df.at[idx, col]
-                        formatted = f"{float_format % val}$\\pm${float_format % df.at[idx, colname+' std']}"
-                        if val == max_val:
-                            formatted = f"\\textbf{{{formatted}}}"
-                        df_copy.at[idx, col] = formatted
-                    df_copy.drop(colname+' std', axis=1, inplace=True)
-                    df_copy.rename(columns={col: colname}, inplace=True)
-            else:
-                # Mantiene valori non numerici (come matrici di confusione)
-                df_copy[col] = df_copy[col].astype(str)
-    return df_copy.to_latex(escape=False)
 
 #-------------------------------------------------------------------------------------
 # Sequence utility functions
