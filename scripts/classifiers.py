@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-from models import FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
-from models import BEHRTDataset, BEHRTModel
-from models import RETAINModel, RETAINDataset, visit_collate_fn
-from models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
-from models import DipoleDataset, DipoleModel, dipole_collate
+from .models import FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
+from .models import BEHRTDataset, BEHRTModel
+from .models import RETAINModel, RETAINDataset, visit_collate_fn
+from .models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
+from .models import DipoleDataset, DipoleModel, dipole_collate
 from collections import Counter
 import torch
 from torch.utils.data import DataLoader
