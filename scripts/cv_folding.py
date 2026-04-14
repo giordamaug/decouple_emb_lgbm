@@ -62,7 +62,6 @@ def lgbm_cv(embedder_configs,
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
     y_df = y_df.loc[selected_patient_ids]
     y = y_df.values.astype(np.float32).ravel()
-    # print(y_df.shape)
     with frame_top:
         cvfolding = tqdm(skf.split(selected_patient_ids, y), total=n_splits, desc="Folds")
         for fold, (t_idx, v_idx) in enumerate(cvfolding):
@@ -203,7 +202,6 @@ def e2e_cv(embedder_configs,
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
     y_df = y_df.loc[selected_patient_ids]
     y = y_df.values.astype(np.float32).ravel()
-    # print(y_df.shape)
     with frame_top:
         cvfolding = tqdm(skf.split(selected_patient_ids, y), total=n_splits, desc="Folds")
         for fold, (t_idx, v_idx) in enumerate(cvfolding):
