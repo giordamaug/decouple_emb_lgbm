@@ -7,58 +7,47 @@ import numpy as np
 import torch
 from tqdm.notebook import tqdm
 from collections import defaultdict
+import matplotlib.pyplot as plt
 
 class Settings:
     def __init__(self, datafile = "datafile.json", 
-                 patologies = [], 
+                 pathology_field = '',
+                 static_vars = [],
+                 target_var = 'target',
+                 pathologies = {}, 
                  methods = ["LSTM"], 
                  evfields = [],
                  no_selection = False,
                  spleen_flags = ['YES', 'NO'],
                  selected_spleen_flags = ['YES'],
-                 enable_plot = True, with_static=False, with_validation=False, to_latex=True, 
+                 remove_events = [],
+                 enable_plot = True, to_latex=True, 
                  batch_size = 4, n_splits = 5, min_events = 3, hidden_size = 128, embedding_size=128, num_epochs=10,
                  lang='EN'):
-        self.selected_patient_ids = []
         self.datafile = datafile
         self.num_epochs = num_epochs
+        self.static_vars = static_vars
+        self.target_var = target_var
         self.embedding_dim = embedding_size
         self.hidden_dim = hidden_size
         self.batch_size = batch_size
         self.pooling = 'mean'
         self.enable_plot = enable_plot
-        self.with_static = with_static
-        self.with_validation = with_validation
         self.n_splits = n_splits
         self.min_events = min_events
         self.random_state = 42
         self.to_latex = to_latex
         self.noselection = no_selection
-        self.patologies = patologies
+        self.pathologies = pathologies
         self.methods = methods
-        self.dataset = None
-        self.dataset_orig = None
         self.evfields = evfields
+        self.remove_events= remove_events
         self.selected_patient_ids = []
         self.spleen_flags = spleen_flags
-        self.lang = lang
         self.selected_spleen_flags = selected_spleen_flags
-        self.spleen_yes_flag = spleen_flags[0]
-        self.spleen_no_flag = spleen_flags[1]
-        if lang == 'EN':
-            self.yes_answer = 'YES',
-            self.no_answer = 'NO',
-            self.pathology_field='base_pathology_area'
-            self.pathology_field='base_pathology_area'
-            self.events_field='events'
-            self.is_splenectomized_field='is_splenectomized?'
-        elif lang =='IT':
-            self.yes_answer = 'SI',
-            self.no_answer = 'NO',
-            self.pathology_field='area_pat_base'
-            self.events_field='eventi'
-            self.is_splenectomized_field='splenectomizzato'
-        self.splenectomized = self.yes_answer
+        self.pathology_field=pathology_field
+        self.events_field='events'
+        self.is_splenectomized_field='is_splenectomized?'
 
         try:
             dataset = pd.read_json(self.datafile).set_index('id')
@@ -66,19 +55,42 @@ class Settings:
             self.dataset = self.dataset_orig.copy()
 
             if not self.noselection:
-                pathology_values = sorted(
-                    dataset[self.pathology_field].dropna().unique().tolist()
-                )
-                self.patologies_widget.options = [(p, p) for p in pathology_values]
-                self.patologies_widget.value = pathology_values if len(self.patologies) == 0 else self.patologies
+                self.dataset = self.dataset[(self.dataset[self.pathology_field].isin(self.pathologies.keys())) & 
+                                            (self.dataset[self.is_splenectomized_field].isin(self.selected_spleen_flags))]
             
-            evfvalues = list(dataset.iloc[0][self.events_field][0].keys())
-            self.evfields_widget.options = [(p, p) for p in evfvalues] 
-            self.evfields_widget.value = evfvalues if len(self.evfields) == 0 else self.evfields
-            print(f"Dataset loaded successfully from {self.datafile}")
+            print(f"Loaded {len(self.dataset)} records from {self.datafile}")
+            self.selected_patient_ids = self.dataset.index.values
         except Exception as e:
             print("Error loading dataset:", e)
 
+
+def pie_plot(dataset, pathology_field, pathologies):
+    values = dataset[pathology_field].value_counts()
+    legend_labels = values.index
+    labels_short = [pathologies[l] for l in legend_labels]
+    # 👉 funzione per mostrare valori assoluti
+    def absolute_autopct(vals):
+        def inner(pct):
+            total = sum(vals)
+            val = int(round(pct * total / 100.0))
+            return f"{val}"
+        return inner
+    fig, ax = plt.subplots(figsize=(10, 3))
+    wedges, texts, autotexts = ax.pie(
+        values,
+        labels=labels_short,
+        autopct=absolute_autopct(values)
+    )
+    # 👉 legenda separata
+    ax.legend(
+        wedges,
+        legend_labels,
+        title="Legend",
+        loc="center left",
+        bbox_to_anchor=(1.1, 0.5)
+    )
+    plt.tight_layout()
+    plt.show()
 
 #-------------------------------------------------------------------------------------
 # Sequence utility functions
@@ -112,16 +124,6 @@ def group_events_by_visit(sequences):
     for pid, events in sequences.items():
         grouped_by_date = defaultdict(list)
         for event, date in events:
-            grouped_by_date[date].append(event)
-        visit_sequences[pid] = [(grouped_by_date[date], date) for date in sorted(grouped_by_date.keys())]
-    return visit_sequences
-
-def group_events_by_visit_old(sequences, on_field='date'):
-    visit_sequences= {}
-    for pid, events in sequences.items():
-        grouped_by_date = defaultdict(list)
-        for event in events:
-            date = event[on_field]
             grouped_by_date[date].append(event)
         visit_sequences[pid] = [(grouped_by_date[date], date) for date in sorted(grouped_by_date.keys())]
     return visit_sequences
