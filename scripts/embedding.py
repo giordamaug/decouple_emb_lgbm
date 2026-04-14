@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-from models import LSTMModel, BiLSTMModel, BiPadLSTMModel, FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
-from models import BEHRTDataset, BEHRTModel
-from models import RETAINModel, RETAINDataset, visit_collate_fn, bipadlstm_collate_fn
-from models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
-from models import DipoleDataset, DipoleModel, dipole_collate
-from models import TimeAwareLSTMModel, timeaware_collate_fn, TimeAwareLSTMDataset
-from models import DOME, co_occurrence_infectious_window,compute_directional_ppmi, riskmatrix_loop_fb_dome
+from .models import LSTMModel, BiLSTMModel, BiPadLSTMModel, FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
+from .models import BEHRTDataset, BEHRTModel
+from .models import RETAINModel, RETAINDataset, visit_collate_fn, bipadlstm_collate_fn
+from .models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
+from .models import DipoleDataset, DipoleModel, dipole_collate
+from .models import TimeAwareLSTMModel, timeaware_collate_fn, TimeAwareLSTMDataset
+from .models import DOME, co_occurrence_infectious_window,compute_directional_ppmi, riskmatrix_loop_fb_dome
 from collections import Counter
 import torch
 from torch.utils.data import DataLoader
@@ -134,6 +134,7 @@ def BEHRTembedder(sequences,
     return train_df, test_df
 
 def DOMEEmbedder(sequences,
+                 labels,
                  targets,
                  df,
                  train_idx=None,
@@ -143,7 +144,8 @@ def DOMEEmbedder(sequences,
                  frame_plot=None,
                 ):
     all_idx = np.concatenate((train_idx, valid_idx), axis=0)
-    events_fold_train = {id: sequences[int(id)] for id in train_idx if int(id) in sequences}
+    sequences_ = { id: events + [("dead", events[-1][1])] if labels[id]==1 else events for id,events in sequences.items()} 
+    events_fold_train = {id: sequences_[int(id)] for id in train_idx if int(id) in sequences_}
     with frame_tqdm:
         frame_tqdm.clear_output(wait=True)
         cooc_prior, vocabular = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='prior')
@@ -188,14 +190,12 @@ def DOMEEmbedder(sequences,
     return train_df, test_df
 
 def StaticEmbedder(df,
-                   include_attributes=[],
                    train_idx=None, 
                    valid_idx=None,
                    enable_plot=False,
-                   frame_tqdm=None,
-                   frame_plot=None,
+                    frame_tqdm=None,
+                    frame_plot=None,
                    ):
-    df = df[[c for c in include_attributes if c in df.columns]]
     return df.loc[train_idx], df.loc[valid_idx]
 
 import re
@@ -243,7 +243,7 @@ def COUNTEREmbedder(sequences,
     colnames = list(set(vocab) - set(list(targets)))
     zdata = np.zeros(shape=(len(all_idx),len(colnames)))
     df_bin = pd.DataFrame(zdata, columns=colnames, index=all_idx)
-    for id,events in tqdm(sequences.items(), total=len(sequences), desc="[BINARY] contruct:"):
+    for id,events in tqdm(sequences.items(), total=len(sequences), desc="[COUNTER] contruct:"):
         for event,date in events:
             df_bin.loc[id][event] += 1
     train_df = df_bin.loc[train_idx]
