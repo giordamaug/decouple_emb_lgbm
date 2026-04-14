@@ -1,0 +1,5467 @@
+[
+  {
+    "id": "10019003",
+    "gender": "F",
+    "age_group": "elder",
+    "base_pathology_area": "OD - Oncological Diseases",
+    "is_dead?": 0,
+    "events": [
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2148-12-21",
+        "code": "V103",
+        "code_type": "ICD-9",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Person boarding or alighting a pedal cycle injured in collision with pedestrian or animal",
+        "date": "2148-12-21",
+        "code": "V103",
+        "code_type": "ICD-9",
+        "code_descr": "Person boarding or alighting a pedal cycle injured in collision with pedestrian or animal"
+      },
+      {
+        "type": "disease",
+        "event": "Depressive disorder, not elsewhere classified",
+        "date": "2148-12-21",
+        "code": "311",
+        "code_type": "ICD-9",
+        "code_descr": "Depressive disorder, not elsewhere classified"
+      },
+      {
+        "type": "disease",
+        "event": "Other and unspecified ovarian cyst",
+        "date": "2148-12-21",
+        "code": "6202",
+        "code_type": "ICD-9",
+        "code_descr": "Other and unspecified ovarian cyst"
+      },
+      {
+        "type": "disease",
+        "event": "Other and unspecified hyperlipidemia",
+        "date": "2148-12-21",
+        "code": "2724",
+        "code_type": "ICD-9",
+        "code_descr": "Other and unspecified hyperlipidemia"
+      },
+      {
+        "type": "disease",
+        "event": "Unspecified essential hypertension",
+        "date": "2148-12-21",
+        "code": "4019",
+        "code_type": "ICD-9",
+        "code_descr": "Unspecified essential hypertension"
+      },
+      {
+        "type": "disease",
+        "event": "Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled",
+        "date": "2148-12-21",
+        "code": "25000",
+        "code_type": "ICD-9",
+        "code_descr": "Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled"
+      },
+      {
+        "type": "disease",
+        "event": "Other emphysema",
+        "date": "2148-12-21",
+        "code": "4928",
+        "code_type": "ICD-9",
+        "code_descr": "Other emphysema"
+      },
+      {
+        "type": "therapy",
+        "event": "Laparoscopic removal of both ovaries and tubes at same operative episode",
+        "date": "2148-12-21",
+        "code": "6563",
+        "code_type": "ICD-9",
+        "code_descr": "Laparoscopic removal of both ovaries and tubes at same operative episode"
+      },
+      {
+        "type": "therapy",
+        "event": "Other cystoscopy",
+        "date": "2148-12-21",
+        "code": "5732",
+        "code_type": "ICD-9",
+        "code_descr": "Other cystoscopy"
+      },
+      {
+        "type": "therapy",
+        "event": "Laparoscopic total abdominal hysterectomy",
+        "date": "2148-12-21",
+        "code": "6841",
+        "code_type": "ICD-9",
+        "code_descr": "Laparoscopic total abdominal hysterectomy"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2148-12-21",
+        "code": "INSULIN",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Atenolol",
+        "date": "2148-12-21",
+        "code": "ATEN50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Atenolol"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2148-12-21",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin",
+        "date": "2148-12-21",
+        "code": "HEPA5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin"
+      },
+      {
+        "type": "drug",
+        "event": "Lisinopril",
+        "date": "2148-12-21",
+        "code": "LISI20",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lisinopril"
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2148-12-21",
+        "code": "LR1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2148-12-21",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Ondansetron",
+        "date": "2148-12-21",
+        "code": "ONDAN4I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ondansetron"
+      },
+      {
+        "type": "drug",
+        "event": "Phenazopyridine",
+        "date": "2148-12-21",
+        "code": "PHEN100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Phenazopyridine"
+      },
+      {
+        "type": "drug",
+        "event": "Pneumococcal Vac Polyvalent",
+        "date": "2148-12-21",
+        "code": "PNEU25I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pneumococcal Vac Polyvalent"
+      },
+      {
+        "type": "drug",
+        "event": "Gentamicin",
+        "date": "2148-12-21",
+        "code": "GENT80PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Gentamicin"
+      },
+      {
+        "type": "drug",
+        "event": "Influenza Virus Vaccine",
+        "date": "2148-12-21",
+        "code": "INFL0.5LF",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Influenza Virus Vaccine"
+      },
+      {
+        "type": "drug",
+        "event": "Paroxetine",
+        "date": "2148-12-21",
+        "code": "PARO20",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Paroxetine"
+      },
+      {
+        "type": "drug",
+        "event": "CefazoLIN",
+        "date": "2148-12-21",
+        "code": "CEFA10I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefazoLIN"
+      },
+      {
+        "type": "drug",
+        "event": "Isotonic Sodium Chloride",
+        "date": "2148-12-21",
+        "code": "GENTBASE1",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Isotonic Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2148-12-21",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2148-12-21",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Oxycodone-Acetaminophen",
+        "date": "2148-12-21",
+        "code": "PERC",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Oxycodone-Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2148-12-21",
+        "code": "NS100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Simethicone",
+        "date": "2148-12-21",
+        "code": "SIME80",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simethicone"
+      },
+      {
+        "type": "drug",
+        "event": "HYDROmorphone (Dilaudid)",
+        "date": "2148-12-21",
+        "code": "HYDR1SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HYDROmorphone (Dilaudid)"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol 0.083% Neb Soln",
+        "date": "2148-12-22",
+        "code": "ALBU3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol 0.083% Neb Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol 0.083% Neb Soln",
+        "date": "2148-12-22",
+        "code": "ALBU3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol 0.083% Neb Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium Bromide Neb",
+        "date": "2148-12-22",
+        "code": "IPRA2H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium Bromide Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium Bromide Neb",
+        "date": "2148-12-22",
+        "code": "IPRA2H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium Bromide Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Ibuprofen",
+        "date": "2148-12-22",
+        "code": "IBUP600",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ibuprofen"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2148-12-23",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "disease",
+        "event": "Gastric ulcer, unspecified as acute or chronic, without hemorrhage or perforation",
+        "date": "2153-03-27",
+        "code": "K259",
+        "code_type": "ICD-10",
+        "code_descr": "Gastric ulcer, unspecified as acute or chronic, without hemorrhage or perforation"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic or unspecified duodenal ulcer with hemorrhage",
+        "date": "2153-03-27",
+        "code": "K264",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic or unspecified duodenal ulcer with hemorrhage"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2153-03-27",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Morbid (severe) obesity due to excess calories",
+        "date": "2153-03-27",
+        "code": "E6601",
+        "code_type": "ICD-10",
+        "code_descr": "Morbid (severe) obesity due to excess calories"
+      },
+      {
+        "type": "disease",
+        "event": "Adverse effect of drugs affecting uric acid metabolism, initial encounter",
+        "date": "2153-03-27",
+        "code": "T504X5A",
+        "code_type": "ICD-10",
+        "code_descr": "Adverse effect of drugs affecting uric acid metabolism, initial encounter"
+      },
+      {
+        "type": "disease",
+        "event": "Adverse effect of antineoplastic and immunosuppressive drugs, initial encounter",
+        "date": "2153-03-27",
+        "code": "T451X5A",
+        "code_type": "ICD-10",
+        "code_descr": "Adverse effect of antineoplastic and immunosuppressive drugs, initial encounter"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2153-03-27",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Sepsis, unspecified organism",
+        "date": "2153-03-27",
+        "code": "A419",
+        "code_type": "ICD-10",
+        "code_descr": "Sepsis, unspecified organism"
+      },
+      {
+        "type": "disease",
+        "event": "Acute posthemorrhagic anemia",
+        "date": "2153-03-27",
+        "code": "D62",
+        "code_type": "ICD-10",
+        "code_descr": "Acute posthemorrhagic anemia"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2153-03-27",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2153-03-27",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Severe sepsis with septic shock",
+        "date": "2153-03-27",
+        "code": "R6521",
+        "code_type": "ICD-10",
+        "code_descr": "Severe sepsis with septic shock"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic myeloproliferative disease",
+        "date": "2153-03-27",
+        "code": "D471",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic myeloproliferative disease"
+      },
+      {
+        "type": "disease",
+        "event": "Nonalcoholic steatohepatitis (NASH)",
+        "date": "2153-03-27",
+        "code": "K7581",
+        "code_type": "ICD-10",
+        "code_descr": "Nonalcoholic steatohepatitis (NASH)"
+      },
+      {
+        "type": "disease",
+        "event": "Urinary tract infection, site not specified",
+        "date": "2153-03-27",
+        "code": "N390",
+        "code_type": "ICD-10",
+        "code_descr": "Urinary tract infection, site not specified"
+      },
+      {
+        "type": "disease",
+        "event": "Body mass index (BMI) 40.0-44.9, adult",
+        "date": "2153-03-27",
+        "code": "Z6841",
+        "code_type": "ICD-10",
+        "code_descr": "Body mass index (BMI) 40.0-44.9, adult"
+      },
+      {
+        "type": "disease",
+        "event": "Dehydration",
+        "date": "2153-03-27",
+        "code": "E860",
+        "code_type": "ICD-10",
+        "code_descr": "Dehydration"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2153-03-27",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Localized skin eruption due to drugs and medicaments taken internally",
+        "date": "2153-03-27",
+        "code": "L271",
+        "code_type": "ICD-10",
+        "code_descr": "Localized skin eruption due to drugs and medicaments taken internally"
+      },
+      {
+        "type": "disease",
+        "event": "Obstructive sleep apnea (adult) (pediatric)",
+        "date": "2153-03-27",
+        "code": "G4733",
+        "code_type": "ICD-10",
+        "code_descr": "Obstructive sleep apnea (adult) (pediatric)"
+      },
+      {
+        "type": "disease",
+        "event": "Do not resuscitate",
+        "date": "2153-03-27",
+        "code": "Z66",
+        "code_type": "ICD-10",
+        "code_descr": "Do not resuscitate"
+      },
+      {
+        "type": "disease",
+        "event": "Hypoxemia",
+        "date": "2153-03-27",
+        "code": "R0902",
+        "code_type": "ICD-10",
+        "code_descr": "Hypoxemia"
+      },
+      {
+        "type": "disease",
+        "event": "Essential (primary) hypertension",
+        "date": "2153-03-27",
+        "code": "I10",
+        "code_type": "ICD-10",
+        "code_descr": "Essential (primary) hypertension"
+      },
+      {
+        "type": "disease",
+        "event": "Pure hypercholesterolemia",
+        "date": "2153-03-27",
+        "code": "E780",
+        "code_type": "ICD-10",
+        "code_descr": "Pure hypercholesterolemia"
+      },
+      {
+        "type": "disease",
+        "event": "Acute kidney failure, unspecified",
+        "date": "2153-03-27",
+        "code": "N179",
+        "code_type": "ICD-10",
+        "code_descr": "Acute kidney failure, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Unspecified asthma, uncomplicated",
+        "date": "2153-03-27",
+        "code": "J45909",
+        "code_type": "ICD-10",
+        "code_descr": "Unspecified asthma, uncomplicated"
+      },
+      {
+        "type": "therapy",
+        "event": "Destruction of Duodenum, Via Natural or Artificial Opening Endoscopic",
+        "date": "2153-03-27",
+        "code": "0D598ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Destruction of Duodenum, Via Natural or Artificial Opening Endoscopic"
+      },
+      {
+        "type": "therapy",
+        "event": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach",
+        "date": "2153-03-27",
+        "code": "02HV33Z",
+        "code_type": "ICD-10",
+        "code_descr": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach"
+      },
+      {
+        "type": "therapy",
+        "event": "Ultrasonography of Superior Vena Cava, Guidance",
+        "date": "2153-03-27",
+        "code": "B548ZZA",
+        "code_type": "ICD-10",
+        "code_descr": "Ultrasonography of Superior Vena Cava, Guidance"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-03-28",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Aspirin",
+        "date": "2153-03-28",
+        "code": "ASA81",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Aspirin"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-03-28",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-03-28",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Sarna Lotion",
+        "date": "2153-03-28",
+        "code": "SARNL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sarna Lotion"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol 0.083% Neb Soln",
+        "date": "2153-03-28",
+        "code": "ALBU3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol 0.083% Neb Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2153-03-28",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin",
+        "date": "2153-03-28",
+        "code": "HEPA5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin"
+      },
+      {
+        "type": "drug",
+        "event": "HydrOXYzine",
+        "date": "2153-03-28",
+        "code": "HYDX25",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HydrOXYzine"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium-Albuterol Neb",
+        "date": "2153-03-28",
+        "code": "IPAL3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium-Albuterol Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2153-03-28",
+        "code": "LEVO75",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-03-28",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-03-28",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Simvastatin",
+        "date": "2153-03-28",
+        "code": "SIMV10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simvastatin"
+      },
+      {
+        "type": "drug",
+        "event": "Allopurinol",
+        "date": "2153-03-28",
+        "code": "ALLO100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Allopurinol"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2153-03-28",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2153-03-28",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-03-28",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-03-28",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Ondansetron",
+        "date": "2153-03-28",
+        "code": "ONDAN4I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ondansetron"
+      },
+      {
+        "type": "drug",
+        "event": "PNEUMOcoccal 23-valent polysaccharide vaccine",
+        "date": "2153-03-28",
+        "code": "PNEU25I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "PNEUMOcoccal 23-valent polysaccharide vaccine"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2153-03-28",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2153-03-28",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin IV",
+        "date": "2153-03-28",
+        "code": "CIPR400PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin IV"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin IV",
+        "date": "2153-03-28",
+        "code": "CIPR400PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin IV"
+      },
+      {
+        "type": "drug",
+        "event": "Influenza Vaccine Quadrivalent",
+        "date": "2153-03-28",
+        "code": "INFL0.5LF",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Influenza Vaccine Quadrivalent"
+      },
+      {
+        "type": "drug",
+        "event": "MetRONIDAZOLE (FLagyl)",
+        "date": "2153-03-28",
+        "code": "METR500PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "MetRONIDAZOLE (FLagyl)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-03-28",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2153-03-28",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "NORepinephrine",
+        "date": "2153-03-28",
+        "code": "NORE8/250N",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "NORepinephrine"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-03-28",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-03-28",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-03-28",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-03-28",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-03-28",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-03-28",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2153-03-28",
+        "code": "ACET325",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-03-28",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-03-28",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "Thiamine",
+        "date": "2153-03-28",
+        "code": "THIA100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Thiamine"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-03-28",
+        "code": "KCL20PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Sterile Water",
+        "date": "2153-03-28",
+        "code": "KCLBASE2",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sterile Water"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-03-28",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2153-03-28",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2153-03-28",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-03-28",
+        "code": "KCL20PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Sterile Water",
+        "date": "2153-03-28",
+        "code": "KCLBASE2",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sterile Water"
+      },
+      {
+        "type": "drug",
+        "event": "NS",
+        "date": "2153-03-28",
+        "code": "METRBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "NS"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-03-28",
+        "code": "KCL20PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Sterile Water",
+        "date": "2153-03-28",
+        "code": "KCLBASE2",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sterile Water"
+      },
+      {
+        "type": "drug",
+        "event": "5% Dextrose",
+        "date": "2153-03-28",
+        "code": "CIPROBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "5% Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "5% Dextrose",
+        "date": "2153-03-28",
+        "code": "CIPROBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "5% Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "5% Dextrose",
+        "date": "2153-03-28",
+        "code": "D5W250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "5% Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-03-28",
+        "code": "NOREBASENS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "PrednisoLONE Acetate 1% Ophth. Susp.",
+        "date": "2153-03-28",
+        "code": "PRED1ES",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "PrednisoLONE Acetate 1% Ophth. Susp."
+      },
+      {
+        "type": "drug",
+        "event": "Brimonidine Tartrate 0.15% Ophth.",
+        "date": "2153-03-28",
+        "code": "ALPH0.15O",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Brimonidine Tartrate 0.15% Ophth."
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2153-03-28",
+        "code": "LRLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2153-03-28",
+        "code": "LRLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2153-03-28",
+        "code": "LRLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-03-28",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-03-28",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "OLANZapine",
+        "date": "2153-03-29",
+        "code": "OLAN5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OLANZapine"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2153-03-29",
+        "code": "CIPR500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin IV",
+        "date": "2153-03-29",
+        "code": "CIPR200PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin IV"
+      },
+      {
+        "type": "drug",
+        "event": "5% Dextrose",
+        "date": "2153-03-29",
+        "code": "CIPROBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "5% Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "PrednisoLONE Acetate 1% Ophth. Susp.",
+        "date": "2153-03-29",
+        "code": "PRED1ES",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "PrednisoLONE Acetate 1% Ophth. Susp."
+      },
+      {
+        "type": "drug",
+        "event": "Clobetasol Propionate 0.05% Ointment",
+        "date": "2153-03-29",
+        "code": "CLOB.05O30",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Clobetasol Propionate 0.05% Ointment"
+      },
+      {
+        "type": "drug",
+        "event": "Lorazepam",
+        "date": "2153-03-29",
+        "code": "LORA2I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lorazepam"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-03-29",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2153-03-30",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Atenolol",
+        "date": "2153-03-30",
+        "code": "ATEN50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Atenolol"
+      },
+      {
+        "type": "drug",
+        "event": "Benzonatate",
+        "date": "2153-03-30",
+        "code": "BENZ100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Benzonatate"
+      },
+      {
+        "type": "drug",
+        "event": "CeftriaXONE",
+        "date": "2153-03-30",
+        "code": "CEFR1MB",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CeftriaXONE"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-03-30",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Levalbuterol Neb",
+        "date": "2153-03-30",
+        "code": "LEVA0.63L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levalbuterol Neb"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride (Mini Bag Plus)",
+        "date": "2153-03-30",
+        "code": "NS/MBP100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride (Mini Bag Plus)"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol 0.083% Neb Soln",
+        "date": "2153-03-31",
+        "code": "ALBU3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol 0.083% Neb Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-03-31",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-03-31",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Triamcinolone Acetonide 0.1% Ointment",
+        "date": "2153-03-31",
+        "code": "TRIA0.1/80O",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Triamcinolone Acetonide 0.1% Ointment"
+      },
+      {
+        "type": "drug",
+        "event": "Fluticasone-Salmeterol Diskus (100/50)",
+        "date": "2153-03-31",
+        "code": "ADVA100/50H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Fluticasone-Salmeterol Diskus (100/50)"
+      },
+      {
+        "type": "drug",
+        "event": "Vial",
+        "date": "2153-04-01",
+        "code": "VIAL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vial"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-04-01",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2153-04-01",
+        "code": "PANT40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-04-02",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium-Albuterol Neb",
+        "date": "2153-04-03",
+        "code": "IPAL3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium-Albuterol Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Nystatin Oral Suspension",
+        "date": "2153-04-03",
+        "code": "NYST5L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Nystatin Oral Suspension"
+      },
+      {
+        "type": "drug",
+        "event": "Acyclovir",
+        "date": "2153-04-03",
+        "code": "ACYC400",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acyclovir"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-04-03",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-03",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin Flush (10 units/ml)",
+        "date": "2153-04-03",
+        "code": "HEPA10SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin Flush (10 units/ml)"
+      },
+      {
+        "type": "drug",
+        "event": "Hydrocortisone (Rectal) 2.5% Cream",
+        "date": "2153-04-03",
+        "code": "ANUSHC",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydrocortisone (Rectal) 2.5% Cream"
+      },
+      {
+        "type": "drug",
+        "event": "Hydrocortisone (Rectal) 2.5% Cream",
+        "date": "2153-04-03",
+        "code": "ANUSHC",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydrocortisone (Rectal) 2.5% Cream"
+      },
+      {
+        "type": "drug",
+        "event": "Maalox/Diphenhydramine/Lidocaine",
+        "date": "2153-04-03",
+        "code": "MABELI120",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Maalox/Diphenhydramine/Lidocaine"
+      },
+      {
+        "type": "drug",
+        "event": "Sucralfate",
+        "date": "2153-04-04",
+        "code": "CARA1",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sucralfate"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2153-04-04",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine Viscous 2%",
+        "date": "2153-04-04",
+        "code": "LIDO15L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine Viscous 2%"
+      },
+      {
+        "type": "drug",
+        "event": "Guaifenesin-Dextromethorphan",
+        "date": "2153-04-04",
+        "code": "GUAI10L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Guaifenesin-Dextromethorphan"
+      },
+      {
+        "type": "drug",
+        "event": "Cepacol (Sore Throat Lozenge)",
+        "date": "2153-04-04",
+        "code": "CEPACOL1",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Cepacol (Sore Throat Lozenge)"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin",
+        "date": "2153-04-05",
+        "code": "HEPA5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium-Albuterol Neb",
+        "date": "2153-04-05",
+        "code": "IPAL3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium-Albuterol Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2153-04-05",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2153-04-05",
+        "code": "CIPR500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2153-04-06",
+        "code": "ACET325",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of irradiation",
+        "date": "2153-04-12",
+        "code": "Z923",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of irradiation"
+      },
+      {
+        "type": "disease",
+        "event": "Acute respiratory failure with hypoxia",
+        "date": "2153-04-12",
+        "code": "J9601",
+        "code_type": "ICD-10",
+        "code_descr": "Acute respiratory failure with hypoxia"
+      },
+      {
+        "type": "disease",
+        "event": "Myelodysplastic disease, not classified",
+        "date": "2153-04-12",
+        "code": "C946",
+        "code_type": "ICD-10",
+        "code_descr": "Myelodysplastic disease, not classified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2153-04-12",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Severe sepsis with septic shock",
+        "date": "2153-04-12",
+        "code": "R6521",
+        "code_type": "ICD-10",
+        "code_descr": "Severe sepsis with septic shock"
+      },
+      {
+        "type": "disease",
+        "event": "Pneumonitis due to inhalation of food and vomit",
+        "date": "2153-04-12",
+        "code": "J690",
+        "code_type": "ICD-10",
+        "code_descr": "Pneumonitis due to inhalation of food and vomit"
+      },
+      {
+        "type": "disease",
+        "event": "Physical restraint status",
+        "date": "2153-04-12",
+        "code": "Z781",
+        "code_type": "ICD-10",
+        "code_descr": "Physical restraint status"
+      },
+      {
+        "type": "disease",
+        "event": "Acute posthemorrhagic anemia",
+        "date": "2153-04-12",
+        "code": "D62",
+        "code_type": "ICD-10",
+        "code_descr": "Acute posthemorrhagic anemia"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperlipidemia, unspecified",
+        "date": "2153-04-12",
+        "code": "E785",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperlipidemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2153-04-12",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Long term (current) use of insulin",
+        "date": "2153-04-12",
+        "code": "Z794",
+        "code_type": "ICD-10",
+        "code_descr": "Long term (current) use of insulin"
+      },
+      {
+        "type": "disease",
+        "event": "Leukemia, unspecified not having achieved remission",
+        "date": "2153-04-12",
+        "code": "C9590",
+        "code_type": "ICD-10",
+        "code_descr": "Leukemia, unspecified not having achieved remission"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2153-04-12",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2153-04-12",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Thrombocytopenia, unspecified",
+        "date": "2153-04-12",
+        "code": "D696",
+        "code_type": "ICD-10",
+        "code_descr": "Thrombocytopenia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic or unspecified duodenal ulcer with hemorrhage",
+        "date": "2153-04-12",
+        "code": "K264",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic or unspecified duodenal ulcer with hemorrhage"
+      },
+      {
+        "type": "disease",
+        "event": "Sepsis, unspecified organism",
+        "date": "2153-04-12",
+        "code": "A419",
+        "code_type": "ICD-10",
+        "code_descr": "Sepsis, unspecified organism"
+      },
+      {
+        "type": "disease",
+        "event": "Do not resuscitate",
+        "date": "2153-04-12",
+        "code": "Z66",
+        "code_type": "ICD-10",
+        "code_descr": "Do not resuscitate"
+      },
+      {
+        "type": "disease",
+        "event": "Obesity, unspecified",
+        "date": "2153-04-12",
+        "code": "E669",
+        "code_type": "ICD-10",
+        "code_descr": "Obesity, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Fall resulting in striking against other object",
+        "date": "2153-04-12",
+        "code": "E8881",
+        "code_type": "ICD-10",
+        "code_descr": "Fall resulting in striking against other object"
+      },
+      {
+        "type": "disease",
+        "event": "Metabolic syndrome",
+        "date": "2153-04-12",
+        "code": "E8881",
+        "code_type": "ICD-10",
+        "code_descr": "Metabolic syndrome"
+      },
+      {
+        "type": "disease",
+        "event": "Essential (primary) hypertension",
+        "date": "2153-04-12",
+        "code": "I10",
+        "code_type": "ICD-10",
+        "code_descr": "Essential (primary) hypertension"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2153-04-12",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2153-04-12",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Body mass index (BMI) 33.0-33.9, adult",
+        "date": "2153-04-12",
+        "code": "Z6833",
+        "code_type": "ICD-10",
+        "code_descr": "Body mass index (BMI) 33.0-33.9, adult"
+      },
+      {
+        "type": "therapy",
+        "event": "Occlusion of Hepatic Artery with Intraluminal Device, Percutaneous Approach",
+        "date": "2153-04-12",
+        "code": "04L33DZ",
+        "code_type": "ICD-10",
+        "code_descr": "Occlusion of Hepatic Artery with Intraluminal Device, Percutaneous Approach"
+      },
+      {
+        "type": "therapy",
+        "event": "Destruction of Duodenum, Via Natural or Artificial Opening Endoscopic",
+        "date": "2153-04-12",
+        "code": "0D598ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Destruction of Duodenum, Via Natural or Artificial Opening Endoscopic"
+      },
+      {
+        "type": "therapy",
+        "event": "Repair Duodenum, Via Natural or Artificial Opening Endoscopic",
+        "date": "2153-04-12",
+        "code": "0DQ98ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Repair Duodenum, Via Natural or Artificial Opening Endoscopic"
+      },
+      {
+        "type": "therapy",
+        "event": "Ultrasonography of Superior Vena Cava, Guidance",
+        "date": "2153-04-12",
+        "code": "B548ZZA",
+        "code_type": "ICD-10",
+        "code_descr": "Ultrasonography of Superior Vena Cava, Guidance"
+      },
+      {
+        "type": "therapy",
+        "event": "Inspection of Upper Intestinal Tract, Via Natural or Artificial Opening Endoscopic",
+        "date": "2153-04-12",
+        "code": "0DJ08ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Inspection of Upper Intestinal Tract, Via Natural or Artificial Opening Endoscopic"
+      },
+      {
+        "type": "therapy",
+        "event": "Occlusion of Gastric Artery with Intraluminal Device, Percutaneous Approach",
+        "date": "2153-04-12",
+        "code": "04L23DZ",
+        "code_type": "ICD-10",
+        "code_descr": "Occlusion of Gastric Artery with Intraluminal Device, Percutaneous Approach"
+      },
+      {
+        "type": "therapy",
+        "event": "Introduction of Other Therapeutic Substance into Upper GI, Via Natural or Artificial Opening Endoscopic",
+        "date": "2153-04-12",
+        "code": "3E0G8GC",
+        "code_type": "ICD-10",
+        "code_descr": "Introduction of Other Therapeutic Substance into Upper GI, Via Natural or Artificial Opening Endoscopic"
+      },
+      {
+        "type": "therapy",
+        "event": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach",
+        "date": "2153-04-12",
+        "code": "02HV33Z",
+        "code_type": "ICD-10",
+        "code_descr": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-12",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Vial",
+        "date": "2153-04-12",
+        "code": "VIAL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vial"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2153-04-12",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2153-04-12",
+        "code": "PANT40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2153-04-12",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-12",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2153-04-12",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-04-12",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2153-04-13",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-04-13",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "CefePIME",
+        "date": "2153-04-13",
+        "code": "CEFE2I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefePIME"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2153-04-13",
+        "code": "LEVO75",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-04-13",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Simvastatin",
+        "date": "2153-04-13",
+        "code": "SIMV10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simvastatin"
+      },
+      {
+        "type": "drug",
+        "event": "Vancomycin",
+        "date": "2153-04-13",
+        "code": "VANC1F",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vancomycin"
+      },
+      {
+        "type": "drug",
+        "event": "Acyclovir",
+        "date": "2153-04-13",
+        "code": "ACYC400",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acyclovir"
+      },
+      {
+        "type": "drug",
+        "event": "Chlorhexidine Gluconate 0.12% Oral Rinse",
+        "date": "2153-04-13",
+        "code": "CHLO15L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Chlorhexidine Gluconate 0.12% Oral Rinse"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-13",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-13",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Soln",
+        "date": "2153-04-13",
+        "code": "ACETSOLN",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen IV",
+        "date": "2153-04-13",
+        "code": "ACET1000I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen IV"
+      },
+      {
+        "type": "drug",
+        "event": "Fentanyl Citrate",
+        "date": "2153-04-13",
+        "code": "FENT2.550",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Fentanyl Citrate"
+      },
+      {
+        "type": "drug",
+        "event": "MetRONIDAZOLE (FLagyl)",
+        "date": "2153-04-13",
+        "code": "METR500PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "MetRONIDAZOLE (FLagyl)"
+      },
+      {
+        "type": "drug",
+        "event": "Soln",
+        "date": "2153-04-13",
+        "code": "FENTSOLN50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Soln"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride (Mini Bag Plus)",
+        "date": "2153-04-13",
+        "code": "NS/MBP100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride (Mini Bag Plus)"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-04-13",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-04-13",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-04-13",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-04-13",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-04-13",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-04-13",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-13",
+        "code": "NS100CG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Calcium Gluconate",
+        "date": "2153-04-13",
+        "code": "CALCG2/100NS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Calcium Gluconate"
+      },
+      {
+        "type": "drug",
+        "event": "PHENYLEPHrine",
+        "date": "2153-04-13",
+        "code": "PHEN10I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "PHENYLEPHrine"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-13",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2153-04-13",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "NS",
+        "date": "2153-04-13",
+        "code": "METRBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "NS"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-13",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2153-04-13",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "Iso-Osmotic Dextrose",
+        "date": "2153-04-13",
+        "code": "VANCOBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Iso-Osmotic Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-13",
+        "code": "NS250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-13",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2153-04-13",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-13",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2153-04-13",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2153-04-13",
+        "code": "LRLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-14",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-14",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "CefePIME",
+        "date": "2153-04-14",
+        "code": "CEFE2I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefePIME"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2153-04-14",
+        "code": "SENN5L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2153-04-14",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2153-04-14",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2153-04-14",
+        "code": "ACET650L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2153-04-14",
+        "code": "DOCU100L",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine 1% (For PICC/Midline Insertions)",
+        "date": "2153-04-14",
+        "code": "LIDO15AM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine 1% (For PICC/Midline Insertions)"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2153-04-14",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "Fentanyl Citrate",
+        "date": "2153-04-14",
+        "code": "FENT2.550",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Fentanyl Citrate"
+      },
+      {
+        "type": "drug",
+        "event": "Propofol",
+        "date": "2153-04-14",
+        "code": "PROP100IG",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Propofol"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride (Mini Bag Plus)",
+        "date": "2153-04-14",
+        "code": "NS/MBP100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride (Mini Bag Plus)"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2153-04-14",
+        "code": "ACET325",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-14",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin Flush (10 units/ml)",
+        "date": "2153-04-14",
+        "code": "HEPA10SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin Flush (10 units/ml)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-14",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Vancomycin",
+        "date": "2153-04-14",
+        "code": "VANC500I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vancomycin"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-14",
+        "code": "NS250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium Bromide MDI",
+        "date": "2153-04-14",
+        "code": "IPRAPF",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium Bromide MDI"
+      },
+      {
+        "type": "drug",
+        "event": "Triamcinolone Acetonide 0.025% Cream",
+        "date": "2153-04-14",
+        "code": "TRIAM.025/45C",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Triamcinolone Acetonide 0.025% Cream"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol Inhaler",
+        "date": "2153-04-14",
+        "code": "ALBU17H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol Inhaler"
+      },
+      {
+        "type": "drug",
+        "event": "Lactated Ringers",
+        "date": "2153-04-14",
+        "code": "LRLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lactated Ringers"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-04-14",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2153-04-14",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2153-04-15",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "NORepinephrine",
+        "date": "2153-04-15",
+        "code": "NORE8/250N",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "NORepinephrine"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2153-04-15",
+        "code": "APAP500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "Vancomycin",
+        "date": "2153-04-15",
+        "code": "VANC500I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vancomycin"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-15",
+        "code": "NOREBASENS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-15",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "HYDROmorphone (Dilaudid)",
+        "date": "2153-04-15",
+        "code": "HYDR1SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HYDROmorphone (Dilaudid)"
+      },
+      {
+        "type": "drug",
+        "event": "OxycoDONE (Immediate Release) ",
+        "date": "2153-04-16",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxycoDONE (Immediate Release) "
+      },
+      {
+        "type": "drug",
+        "event": "Alteplase (Catheter Clearance)",
+        "date": "2153-04-16",
+        "code": "ALTE1/2I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Alteplase (Catheter Clearance)"
+      },
+      {
+        "type": "drug",
+        "event": "Syringe (0.9% Sodium Chloride)",
+        "date": "2153-04-16",
+        "code": "SYRINGENS",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Syringe (0.9% Sodium Chloride)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2153-04-16",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "HYDROmorphone (Dilaudid)",
+        "date": "2153-04-16",
+        "code": "HYDR1SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HYDROmorphone (Dilaudid)"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol Inhaler",
+        "date": "2153-04-16",
+        "code": "ALBU17H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol Inhaler"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-17",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-17",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2153-04-17",
+        "code": "INRHI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin",
+        "date": "2153-04-17",
+        "code": "HEPA5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin"
+      },
+      {
+        "type": "drug",
+        "event": "Vancomycin",
+        "date": "2153-04-17",
+        "code": "VANC500I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vancomycin"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2153-04-17",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2153-04-18",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2153-04-18",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-18",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-18",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Miconazole Powder 2%",
+        "date": "2153-04-19",
+        "code": "MICO2P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Miconazole Powder 2%"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-19",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2153-04-19",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2153-04-20",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "disease",
+        "event": "Anxiety disorder, unspecified",
+        "date": "2155-05-17",
+        "code": "F419",
+        "code_type": "ICD-10",
+        "code_descr": "Anxiety disorder, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Other overlap syndromes",
+        "date": "2155-05-17",
+        "code": "M351",
+        "code_type": "ICD-10",
+        "code_descr": "Other overlap syndromes"
+      },
+      {
+        "type": "disease",
+        "event": "Atelectasis",
+        "date": "2155-05-17",
+        "code": "J9811",
+        "code_type": "ICD-10",
+        "code_descr": "Atelectasis"
+      },
+      {
+        "type": "disease",
+        "event": "Hypertensive heart disease with heart failure",
+        "date": "2155-05-17",
+        "code": "I110",
+        "code_type": "ICD-10",
+        "code_descr": "Hypertensive heart disease with heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Urinary tract infection, site not specified",
+        "date": "2155-05-17",
+        "code": "N390",
+        "code_type": "ICD-10",
+        "code_descr": "Urinary tract infection, site not specified"
+      },
+      {
+        "type": "disease",
+        "event": "Anemia in neoplastic disease",
+        "date": "2155-05-17",
+        "code": "D630",
+        "code_type": "ICD-10",
+        "code_descr": "Anemia in neoplastic disease"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2155-05-17",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Acute kidney failure, unspecified",
+        "date": "2155-05-17",
+        "code": "N179",
+        "code_type": "ICD-10",
+        "code_descr": "Acute kidney failure, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Infarction of spleen",
+        "date": "2155-05-17",
+        "code": "D735",
+        "code_type": "ICD-10",
+        "code_descr": "Infarction of spleen"
+      },
+      {
+        "type": "disease",
+        "event": "Acute respiratory failure with hypoxia",
+        "date": "2155-05-17",
+        "code": "J9601",
+        "code_type": "ICD-10",
+        "code_descr": "Acute respiratory failure with hypoxia"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2155-05-17",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease",
+        "date": "2155-05-17",
+        "code": "E790",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease"
+      },
+      {
+        "type": "disease",
+        "event": "Neoplasm related pain (acute) (chronic)",
+        "date": "2155-05-17",
+        "code": "G893",
+        "code_type": "ICD-10",
+        "code_descr": "Neoplasm related pain (acute) (chronic)"
+      },
+      {
+        "type": "disease",
+        "event": "Splenomegaly, not elsewhere classified",
+        "date": "2155-05-17",
+        "code": "R161",
+        "code_type": "ICD-10",
+        "code_descr": "Splenomegaly, not elsewhere classified"
+      },
+      {
+        "type": "disease",
+        "event": "Acute on chronic diastolic (congestive) heart failure",
+        "date": "2155-05-17",
+        "code": "I5033",
+        "code_type": "ICD-10",
+        "code_descr": "Acute on chronic diastolic (congestive) heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2155-05-17",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperlipidemia, unspecified",
+        "date": "2155-05-17",
+        "code": "E785",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperlipidemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Unspecified abdominal pain",
+        "date": "2155-05-17",
+        "code": "R109",
+        "code_type": "ICD-10",
+        "code_descr": "Unspecified abdominal pain"
+      },
+      {
+        "type": "disease",
+        "event": "Fall on stairs or ladders in water transport injuring unspecified person",
+        "date": "2155-05-17",
+        "code": "E8339",
+        "code_type": "ICD-10",
+        "code_descr": "Fall on stairs or ladders in water transport injuring unspecified person"
+      },
+      {
+        "type": "disease",
+        "event": "Other disorders of phosphorus metabolism",
+        "date": "2155-05-17",
+        "code": "E8339",
+        "code_type": "ICD-10",
+        "code_descr": "Other disorders of phosphorus metabolism"
+      },
+      {
+        "type": "disease",
+        "event": "Myelodysplastic syndrome, unspecified",
+        "date": "2155-05-17",
+        "code": "D469",
+        "code_type": "ICD-10",
+        "code_descr": "Myelodysplastic syndrome, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Nonalcoholic steatohepatitis (NASH)",
+        "date": "2155-05-17",
+        "code": "K7581",
+        "code_type": "ICD-10",
+        "code_descr": "Nonalcoholic steatohepatitis (NASH)"
+      },
+      {
+        "type": "disease",
+        "event": "Tumor lysis syndrome",
+        "date": "2155-05-17",
+        "code": "E883",
+        "code_type": "ICD-10",
+        "code_descr": "Tumor lysis syndrome"
+      },
+      {
+        "type": "disease",
+        "event": "Do not resuscitate",
+        "date": "2155-05-17",
+        "code": "Z66",
+        "code_type": "ICD-10",
+        "code_descr": "Do not resuscitate"
+      },
+      {
+        "type": "disease",
+        "event": "Coalworker's pneumoconiosis",
+        "date": "2155-05-17",
+        "code": "J60",
+        "code_type": "ICD-10",
+        "code_descr": "Coalworker's pneumoconiosis"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2155-05-17",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Other secondary thrombocytopenia",
+        "date": "2155-05-17",
+        "code": "D6959",
+        "code_type": "ICD-10",
+        "code_descr": "Other secondary thrombocytopenia"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2155-05-17",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2155-05-17",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic pulmonary edema",
+        "date": "2155-05-17",
+        "code": "J811",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic pulmonary edema"
+      },
+      {
+        "type": "therapy",
+        "event": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach",
+        "date": "2155-05-17",
+        "code": "02HV33Z",
+        "code_type": "ICD-10",
+        "code_descr": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach"
+      },
+      {
+        "type": "therapy",
+        "event": "Extraction of Iliac Bone Marrow, Percutaneous Approach, Diagnostic",
+        "date": "2155-05-17",
+        "code": "07DR3ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Extraction of Iliac Bone Marrow, Percutaneous Approach, Diagnostic"
+      },
+      {
+        "type": "therapy",
+        "event": "Drainage of Left Lower Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic",
+        "date": "2155-05-17",
+        "code": "0B9J8ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Drainage of Left Lower Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic"
+      },
+      {
+        "type": "therapy",
+        "event": "Beam Radiation of Spleen using Photons 1 - 10 MeV",
+        "date": "2155-05-17",
+        "code": "D7021ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Beam Radiation of Spleen using Photons 1 - 10 MeV"
+      },
+      {
+        "type": "therapy",
+        "event": "Drainage of Right Middle Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic",
+        "date": "2155-05-17",
+        "code": "0B9D8ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Drainage of Right Middle Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic"
+      },
+      {
+        "type": "drug",
+        "event": "Multivitamins",
+        "date": "2155-05-18",
+        "code": "MVI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Multivitamins"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2155-05-18",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2155-05-18",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2155-05-18",
+        "code": "LEVO88",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2155-05-18",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "TraMADol",
+        "date": "2155-05-18",
+        "code": "TRAM50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraMADol"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-18",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-05-18",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine 2%",
+        "date": "2155-05-18",
+        "code": "LIDO220I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine 2%"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2155-05-18",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Vitamin D",
+        "date": "2155-05-18",
+        "code": "VITD1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vitamin D"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-05-18",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-05-18",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2155-05-18",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2155-05-18",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2155-05-18",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2155-05-18",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-05-18",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2155-05-19",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2155-05-19",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-19",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-05-19",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-05-19",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-20",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "disease",
+        "event": "Infarction of spleen",
+        "date": "2155-05-22",
+        "code": "D735",
+        "code_type": "ICD-10",
+        "code_descr": "Infarction of spleen"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2155-05-22",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic pulmonary edema",
+        "date": "2155-05-22",
+        "code": "J811",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic pulmonary edema"
+      },
+      {
+        "type": "disease",
+        "event": "Hypoxemia",
+        "date": "2155-05-22",
+        "code": "R0902",
+        "code_type": "ICD-10",
+        "code_descr": "Hypoxemia"
+      },
+      {
+        "type": "disease",
+        "event": "Atelectasis",
+        "date": "2155-05-22",
+        "code": "J9811",
+        "code_type": "ICD-10",
+        "code_descr": "Atelectasis"
+      },
+      {
+        "type": "disease",
+        "event": "Pleural effusion, not elsewhere classified",
+        "date": "2155-05-22",
+        "code": "J90",
+        "code_type": "ICD-10",
+        "code_descr": "Pleural effusion, not elsewhere classified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2155-05-22",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Myelodysplastic syndrome, unspecified",
+        "date": "2155-05-22",
+        "code": "D469",
+        "code_type": "ICD-10",
+        "code_descr": "Myelodysplastic syndrome, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2155-05-22",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2155-05-22",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2155-05-22",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2155-05-22",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease",
+        "date": "2155-05-22",
+        "code": "E790",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperlipidemia, unspecified",
+        "date": "2155-05-22",
+        "code": "E785",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperlipidemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Do not resuscitate",
+        "date": "2155-05-22",
+        "code": "Z66",
+        "code_type": "ICD-10",
+        "code_descr": "Do not resuscitate"
+      },
+      {
+        "type": "therapy",
+        "event": "Drainage of Left Lower Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic",
+        "date": "2155-05-22",
+        "code": "0B9J8ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Drainage of Left Lower Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic"
+      },
+      {
+        "type": "therapy",
+        "event": "Drainage of Right Middle Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic",
+        "date": "2155-05-22",
+        "code": "0B9D8ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Drainage of Right Middle Lung Lobe, Via Natural or Artificial Opening Endoscopic, Diagnostic"
+      },
+      {
+        "type": "drug",
+        "event": "Multivitamins",
+        "date": "2155-05-23",
+        "code": "MVI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Multivitamins"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2155-05-23",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Albuterol 0.083% Neb Soln",
+        "date": "2155-05-23",
+        "code": "ALBU3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Albuterol 0.083% Neb Soln"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2155-05-23",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-05-23",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2155-05-23",
+        "code": "LEVO88",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2155-05-23",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "TraMADol",
+        "date": "2155-05-23",
+        "code": "TRAM50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraMADol"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2155-05-23",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-05-23",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-05-23",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2155-05-23",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-23",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-23",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Vitamin D",
+        "date": "2155-05-23",
+        "code": "VITD1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vitamin D"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2155-05-23",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Simvastatin",
+        "date": "2155-05-23",
+        "code": "SIMV10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simvastatin"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2155-05-23",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-05-23",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-05-24",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-05-24",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-05-24",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-24",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-05-24",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-05-24",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-24",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-05-24",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-05-24",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-05-25",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-05-25",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-25",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-05-25",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-05-26",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-05-26",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-05-26",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-05-27",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-05-29",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "disease",
+        "event": "Acute respiratory failure with hypoxia",
+        "date": "2155-06-10",
+        "code": "J9601",
+        "code_type": "ICD-10",
+        "code_descr": "Acute respiratory failure with hypoxia"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2155-06-10",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2155-06-10",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2155-06-10",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Nonalcoholic steatohepatitis (NASH)",
+        "date": "2155-06-10",
+        "code": "K7581",
+        "code_type": "ICD-10",
+        "code_descr": "Nonalcoholic steatohepatitis (NASH)"
+      },
+      {
+        "type": "disease",
+        "event": "Anemia in neoplastic disease",
+        "date": "2155-06-10",
+        "code": "D630",
+        "code_type": "ICD-10",
+        "code_descr": "Anemia in neoplastic disease"
+      },
+      {
+        "type": "disease",
+        "event": "Urinary tract infection, site not specified",
+        "date": "2155-06-10",
+        "code": "N390",
+        "code_type": "ICD-10",
+        "code_descr": "Urinary tract infection, site not specified"
+      },
+      {
+        "type": "disease",
+        "event": "Tumor lysis syndrome",
+        "date": "2155-06-10",
+        "code": "E883",
+        "code_type": "ICD-10",
+        "code_descr": "Tumor lysis syndrome"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperlipidemia, unspecified",
+        "date": "2155-06-10",
+        "code": "E785",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperlipidemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Anxiety disorder, unspecified",
+        "date": "2155-06-10",
+        "code": "F419",
+        "code_type": "ICD-10",
+        "code_descr": "Anxiety disorder, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Infarction of spleen",
+        "date": "2155-06-10",
+        "code": "D735",
+        "code_type": "ICD-10",
+        "code_descr": "Infarction of spleen"
+      },
+      {
+        "type": "disease",
+        "event": "Acute kidney failure, unspecified",
+        "date": "2155-06-10",
+        "code": "N179",
+        "code_type": "ICD-10",
+        "code_descr": "Acute kidney failure, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Splenomegaly, not elsewhere classified",
+        "date": "2155-06-10",
+        "code": "R161",
+        "code_type": "ICD-10",
+        "code_descr": "Splenomegaly, not elsewhere classified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2155-06-10",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Other secondary thrombocytopenia",
+        "date": "2155-06-10",
+        "code": "D6959",
+        "code_type": "ICD-10",
+        "code_descr": "Other secondary thrombocytopenia"
+      },
+      {
+        "type": "disease",
+        "event": "Acute on chronic diastolic (congestive) heart failure",
+        "date": "2155-06-10",
+        "code": "I5033",
+        "code_type": "ICD-10",
+        "code_descr": "Acute on chronic diastolic (congestive) heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Do not resuscitate",
+        "date": "2155-06-10",
+        "code": "Z66",
+        "code_type": "ICD-10",
+        "code_descr": "Do not resuscitate"
+      },
+      {
+        "type": "disease",
+        "event": "Other overlap syndromes",
+        "date": "2155-06-10",
+        "code": "M351",
+        "code_type": "ICD-10",
+        "code_descr": "Other overlap syndromes"
+      },
+      {
+        "type": "disease",
+        "event": "Hypertensive heart disease with heart failure",
+        "date": "2155-06-10",
+        "code": "I110",
+        "code_type": "ICD-10",
+        "code_descr": "Hypertensive heart disease with heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Neoplasm related pain (acute) (chronic)",
+        "date": "2155-06-10",
+        "code": "G893",
+        "code_type": "ICD-10",
+        "code_descr": "Neoplasm related pain (acute) (chronic)"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2155-06-10",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Myelodysplastic syndrome, unspecified",
+        "date": "2155-06-10",
+        "code": "D469",
+        "code_type": "ICD-10",
+        "code_descr": "Myelodysplastic syndrome, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Fall on stairs or ladders in water transport injuring unspecified person",
+        "date": "2155-06-10",
+        "code": "E8339",
+        "code_type": "ICD-10",
+        "code_descr": "Fall on stairs or ladders in water transport injuring unspecified person"
+      },
+      {
+        "type": "disease",
+        "event": "Other disorders of phosphorus metabolism",
+        "date": "2155-06-10",
+        "code": "E8339",
+        "code_type": "ICD-10",
+        "code_descr": "Other disorders of phosphorus metabolism"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2155-06-10",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "therapy",
+        "event": "Beam Radiation of Spleen using Photons 1 - 10 MeV",
+        "date": "2155-06-10",
+        "code": "D7021ZZ",
+        "code_type": "ICD-10",
+        "code_descr": "Beam Radiation of Spleen using Photons 1 - 10 MeV"
+      },
+      {
+        "type": "therapy",
+        "event": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach",
+        "date": "2155-06-10",
+        "code": "02HV33Z",
+        "code_type": "ICD-10",
+        "code_descr": "Insertion of Infusion Device into Superior Vena Cava, Percutaneous Approach"
+      },
+      {
+        "type": "drug",
+        "event": "Multivitamins",
+        "date": "2155-06-11",
+        "code": "MVI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Multivitamins"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2155-06-11",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Ramelteon",
+        "date": "2155-06-11",
+        "code": "RAME8",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ramelteon"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2155-06-11",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Ipratropium-Albuterol Neb",
+        "date": "2155-06-11",
+        "code": "IPAL3H",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ipratropium-Albuterol Neb"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2155-06-11",
+        "code": "LEVO88",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2155-06-11",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2155-06-11",
+        "code": "CIPR250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2155-06-11",
+        "code": "CIPR250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-06-11",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-06-11",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2155-06-11",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2155-06-11",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-06-11",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-06-11",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "Vitamin D",
+        "date": "2155-06-11",
+        "code": "VITD1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vitamin D"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-06-11",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-06-11",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-06-11",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2155-06-11",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Simvastatin",
+        "date": "2155-06-11",
+        "code": "SIMV10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simvastatin"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2155-06-11",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "HYDROmorphone (Dilaudid)",
+        "date": "2155-06-11",
+        "code": "HYDR2",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HYDROmorphone (Dilaudid)"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-06-11",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-06-11",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Morphine Sulfate",
+        "date": "2155-06-11",
+        "code": "MORP4V",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Morphine Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-06-12",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine 1% (For PICC/Midline Insertions)",
+        "date": "2155-06-12",
+        "code": "LIDO15AM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine 1% (For PICC/Midline Insertions)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-06-12",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin Flush (10 units/ml)",
+        "date": "2155-06-12",
+        "code": "HEPA10SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin Flush (10 units/ml)"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2155-06-13",
+        "code": "CIPR250",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-06-13",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-06-14",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "ClonazePAM",
+        "date": "2155-06-14",
+        "code": "CLON5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "ClonazePAM"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-06-14",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "disease",
+        "event": "Other pancytopenia",
+        "date": "2155-07-10",
+        "code": "D61818",
+        "code_type": "ICD-10",
+        "code_descr": "Other pancytopenia"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of other venous thrombosis and embolism",
+        "date": "2155-07-10",
+        "code": "Z86718",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of other venous thrombosis and embolism"
+      },
+      {
+        "type": "disease",
+        "event": "Hemoglobinuria",
+        "date": "2155-07-10",
+        "code": "R823",
+        "code_type": "ICD-10",
+        "code_descr": "Hemoglobinuria"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2155-07-10",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Acquired hemolytic anemia, unspecified",
+        "date": "2155-07-10",
+        "code": "D599",
+        "code_type": "ICD-10",
+        "code_descr": "Acquired hemolytic anemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Neoplasm related pain (acute) (chronic)",
+        "date": "2155-07-10",
+        "code": "G893",
+        "code_type": "ICD-10",
+        "code_descr": "Neoplasm related pain (acute) (chronic)"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2155-07-10",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Hematuria, unspecified",
+        "date": "2155-07-10",
+        "code": "R319",
+        "code_type": "ICD-10",
+        "code_descr": "Hematuria, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic diastolic (congestive) heart failure",
+        "date": "2155-07-10",
+        "code": "I5032",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic diastolic (congestive) heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2155-07-10",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Acidosis",
+        "date": "2155-07-10",
+        "code": "E872",
+        "code_type": "ICD-10",
+        "code_descr": "Acidosis"
+      },
+      {
+        "type": "disease",
+        "event": "Other myelodysplastic syndromes",
+        "date": "2155-07-10",
+        "code": "D46Z",
+        "code_type": "ICD-10",
+        "code_descr": "Other myelodysplastic syndromes"
+      },
+      {
+        "type": "disease",
+        "event": "Pure hypercholesterolemia, unspecified",
+        "date": "2155-07-10",
+        "code": "E7800",
+        "code_type": "ICD-10",
+        "code_descr": "Pure hypercholesterolemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2155-07-10",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Coagulation defect, unspecified",
+        "date": "2155-07-10",
+        "code": "D689",
+        "code_type": "ICD-10",
+        "code_descr": "Coagulation defect, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Nonalcoholic steatohepatitis (NASH)",
+        "date": "2155-07-10",
+        "code": "K7581",
+        "code_type": "ICD-10",
+        "code_descr": "Nonalcoholic steatohepatitis (NASH)"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease",
+        "date": "2155-07-10",
+        "code": "E790",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2155-07-10",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypertensive heart disease with heart failure",
+        "date": "2155-07-10",
+        "code": "I110",
+        "code_type": "ICD-10",
+        "code_descr": "Hypertensive heart disease with heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Pulmonary hypertension, unspecified",
+        "date": "2155-07-10",
+        "code": "I2720",
+        "code_type": "ICD-10",
+        "code_descr": "Pulmonary hypertension, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2155-07-10",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "therapy",
+        "event": "Extraction of Iliac Bone Marrow, Percutaneous Approach, Diagnostic",
+        "date": "2155-07-10",
+        "code": "07DR3ZX",
+        "code_type": "ICD-10",
+        "code_descr": "Extraction of Iliac Bone Marrow, Percutaneous Approach, Diagnostic"
+      },
+      {
+        "type": "drug",
+        "event": "Multivitamins",
+        "date": "2155-07-10",
+        "code": "MVI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Multivitamins"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2155-07-10",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "Vial",
+        "date": "2155-07-10",
+        "code": "VIAL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vial"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2155-07-10",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "CefTRIAXone",
+        "date": "2155-07-10",
+        "code": "CEFR1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefTRIAXone"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2155-07-10",
+        "code": "LEVO88",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2155-07-10",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2155-07-10",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-10",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-10",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2155-07-10",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2155-07-10",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2155-07-10",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2155-07-10",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Vitamin D",
+        "date": "2155-07-10",
+        "code": "VITD1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vitamin D"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-07-10",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-07-10",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-07-10",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2155-07-10",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-07-10",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2155-07-11",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-11",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-11",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-07-11",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2155-07-11",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2155-07-11",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2155-07-11",
+        "code": "ACET325",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "Simvastatin",
+        "date": "2155-07-11",
+        "code": "SIMV10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Simvastatin"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2155-07-11",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-12",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "TraZODone",
+        "date": "2155-07-12",
+        "code": "TRAZ25HT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "TraZODone"
+      },
+      {
+        "type": "drug",
+        "event": "PredniSONE",
+        "date": "2155-07-12",
+        "code": "PRED50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "PredniSONE"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-07-13",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-07-17",
+        "code": "FURO20",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Acyclovir",
+        "date": "2155-07-17",
+        "code": "ACYC400",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acyclovir"
+      },
+      {
+        "type": "drug",
+        "event": "Ciprofloxacin HCl",
+        "date": "2155-07-18",
+        "code": "CIPR500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Ciprofloxacin HCl"
+      },
+      {
+        "type": "drug",
+        "event": "Fluconazole",
+        "date": "2155-07-18",
+        "code": "FLUC200",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Fluconazole"
+      },
+      {
+        "type": "disease",
+        "event": "Acute kidney failure, unspecified",
+        "date": "2155-10-17",
+        "code": "N179",
+        "code_type": "ICD-10",
+        "code_descr": "Acute kidney failure, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Pure hypercholesterolemia, unspecified",
+        "date": "2155-10-17",
+        "code": "E7800",
+        "code_type": "ICD-10",
+        "code_descr": "Pure hypercholesterolemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Unspecified abdominal pain",
+        "date": "2155-10-17",
+        "code": "R109",
+        "code_type": "ICD-10",
+        "code_descr": "Unspecified abdominal pain"
+      },
+      {
+        "type": "disease",
+        "event": "Nonalcoholic steatohepatitis (NASH)",
+        "date": "2155-10-17",
+        "code": "K7581",
+        "code_type": "ICD-10",
+        "code_descr": "Nonalcoholic steatohepatitis (NASH)"
+      },
+      {
+        "type": "disease",
+        "event": "Type 2 diabetes mellitus without complications",
+        "date": "2155-10-17",
+        "code": "E119",
+        "code_type": "ICD-10",
+        "code_descr": "Type 2 diabetes mellitus without complications"
+      },
+      {
+        "type": "disease",
+        "event": "Major depressive disorder, single episode, unspecified",
+        "date": "2155-10-17",
+        "code": "F329",
+        "code_type": "ICD-10",
+        "code_descr": "Major depressive disorder, single episode, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of nicotine dependence",
+        "date": "2155-10-17",
+        "code": "Z87891",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of nicotine dependence"
+      },
+      {
+        "type": "disease",
+        "event": "Thrombocytopenia, unspecified",
+        "date": "2155-10-17",
+        "code": "D696",
+        "code_type": "ICD-10",
+        "code_descr": "Thrombocytopenia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypokalemia",
+        "date": "2155-10-17",
+        "code": "E876",
+        "code_type": "ICD-10",
+        "code_descr": "Hypokalemia"
+      },
+      {
+        "type": "disease",
+        "event": "Personal history of malignant neoplasm of breast",
+        "date": "2155-10-17",
+        "code": "Z853",
+        "code_type": "ICD-10",
+        "code_descr": "Personal history of malignant neoplasm of breast"
+      },
+      {
+        "type": "disease",
+        "event": "Herpesviral infection, unspecified",
+        "date": "2155-10-17",
+        "code": "B009",
+        "code_type": "ICD-10",
+        "code_descr": "Herpesviral infection, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Radiological procedure and radiotherapy as the cause of abnormal reaction of the patient, or of later complication, without mention of misadventure at the time of the procedure",
+        "date": "2155-10-17",
+        "code": "Y842",
+        "code_type": "ICD-10",
+        "code_descr": "Radiological procedure and radiotherapy as the cause of abnormal reaction of the patient, or of later complication, without mention of misadventure at the time of the procedure"
+      },
+      {
+        "type": "disease",
+        "event": "Splenomegaly, not elsewhere classified",
+        "date": "2155-10-17",
+        "code": "R161",
+        "code_type": "ICD-10",
+        "code_descr": "Splenomegaly, not elsewhere classified"
+      },
+      {
+        "type": "disease",
+        "event": "Resistance to penicillins",
+        "date": "2155-10-17",
+        "code": "Z1611",
+        "code_type": "ICD-10",
+        "code_descr": "Resistance to penicillins"
+      },
+      {
+        "type": "disease",
+        "event": "Urinary tract infection, site not specified",
+        "date": "2155-10-17",
+        "code": "N390",
+        "code_type": "ICD-10",
+        "code_descr": "Urinary tract infection, site not specified"
+      },
+      {
+        "type": "disease",
+        "event": "Gastro-esophageal reflux disease without esophagitis",
+        "date": "2155-10-17",
+        "code": "K219",
+        "code_type": "ICD-10",
+        "code_descr": "Gastro-esophageal reflux disease without esophagitis"
+      },
+      {
+        "type": "disease",
+        "event": "Hypothyroidism, unspecified",
+        "date": "2155-10-17",
+        "code": "E039",
+        "code_type": "ICD-10",
+        "code_descr": "Hypothyroidism, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hypertensive heart disease with heart failure",
+        "date": "2155-10-17",
+        "code": "I110",
+        "code_type": "ICD-10",
+        "code_descr": "Hypertensive heart disease with heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Klebsiella pneumoniae [K. pneumoniae] as the cause of diseases classified elsewhere",
+        "date": "2155-10-17",
+        "code": "B961",
+        "code_type": "ICD-10",
+        "code_descr": "Klebsiella pneumoniae [K. pneumoniae] as the cause of diseases classified elsewhere"
+      },
+      {
+        "type": "disease",
+        "event": "Acute respiratory failure with hypoxia",
+        "date": "2155-10-17",
+        "code": "J9601",
+        "code_type": "ICD-10",
+        "code_descr": "Acute respiratory failure with hypoxia"
+      },
+      {
+        "type": "disease",
+        "event": "Anemia, unspecified",
+        "date": "2155-10-17",
+        "code": "D649",
+        "code_type": "ICD-10",
+        "code_descr": "Anemia, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease",
+        "date": "2155-10-17",
+        "code": "E790",
+        "code_type": "ICD-10",
+        "code_descr": "Hyperuricemia without signs of inflammatory arthritis and tophaceous disease"
+      },
+      {
+        "type": "disease",
+        "event": "Myelodysplastic syndrome, unspecified",
+        "date": "2155-10-17",
+        "code": "D469",
+        "code_type": "ICD-10",
+        "code_descr": "Myelodysplastic syndrome, unspecified"
+      },
+      {
+        "type": "disease",
+        "event": "Acute on chronic diastolic (congestive) heart failure",
+        "date": "2155-10-17",
+        "code": "I5033",
+        "code_type": "ICD-10",
+        "code_descr": "Acute on chronic diastolic (congestive) heart failure"
+      },
+      {
+        "type": "disease",
+        "event": "Chronic obstructive pulmonary disease, unspecified",
+        "date": "2155-10-17",
+        "code": "J449",
+        "code_type": "ICD-10",
+        "code_descr": "Chronic obstructive pulmonary disease, unspecified"
+      },
+      {
+        "type": "drug",
+        "event": "Multivitamins",
+        "date": "2155-10-17",
+        "code": "MVI",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Multivitamins"
+      },
+      {
+        "type": "drug",
+        "event": "Tiotropium Bromide",
+        "date": "2155-10-17",
+        "code": "TIOT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Tiotropium Bromide"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-10-17",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "Glucagon",
+        "date": "2155-10-17",
+        "code": "GLUC1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucagon"
+      },
+      {
+        "type": "drug",
+        "event": "Levothyroxine Sodium",
+        "date": "2155-10-17",
+        "code": "LEVO88",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Levothyroxine Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Pantoprazole",
+        "date": "2155-10-17",
+        "code": "PANT40",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Pantoprazole"
+      },
+      {
+        "type": "drug",
+        "event": "Acyclovir",
+        "date": "2155-10-17",
+        "code": "ACYC400",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acyclovir"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-17",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Insulin",
+        "date": "2155-10-17",
+        "code": "HUMU100I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Insulin"
+      },
+      {
+        "type": "drug",
+        "event": "Glucose Gel",
+        "date": "2155-10-17",
+        "code": "GLUCOSEGEL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Glucose Gel"
+      },
+      {
+        "type": "drug",
+        "event": "Acetaminophen",
+        "date": "2155-10-17",
+        "code": "ACET325",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Acetaminophen"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-10-17",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "Vitamin D",
+        "date": "2155-10-17",
+        "code": "VITD1000",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vitamin D"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-17",
+        "code": "KCL40IV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-17",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "ClonazePAM",
+        "date": "2155-10-17",
+        "code": "CLON5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "ClonazePAM"
+      },
+      {
+        "type": "drug",
+        "event": "Escitalopram Oxalate",
+        "date": "2155-10-17",
+        "code": "ESCI10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Escitalopram Oxalate"
+      },
+      {
+        "type": "drug",
+        "event": "Dextrose 50%",
+        "date": "2155-10-17",
+        "code": "DEX50SY",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Dextrose 50%"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-17",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%",
+        "date": "2155-10-17",
+        "code": "NSLV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-10-17",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Neutra-Phos",
+        "date": "2155-10-18",
+        "code": "NEUT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Neutra-Phos"
+      },
+      {
+        "type": "drug",
+        "event": "Bag",
+        "date": "2155-10-18",
+        "code": "BAG50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bag"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-10-18",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Sulfate",
+        "date": "2155-10-18",
+        "code": "MAG2PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Sulfate"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2155-10-18",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-18",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-18",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Magnesium Oxide",
+        "date": "2155-10-18",
+        "code": "MAGN400",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Magnesium Oxide"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-10-18",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL40IV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL40IV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL40IV",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-18",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-18",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-18",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-18",
+        "code": "KCL10PM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "SW",
+        "date": "2155-10-18",
+        "code": "KCLBASE",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "SW"
+      },
+      {
+        "type": "drug",
+        "event": "Vial",
+        "date": "2155-10-19",
+        "code": "VIAL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vial"
+      },
+      {
+        "type": "drug",
+        "event": "CefTRIAXone",
+        "date": "2155-10-19",
+        "code": "CEFR1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefTRIAXone"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-19",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-19",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Neutra-Phos",
+        "date": "2155-10-19",
+        "code": "NEUT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Neutra-Phos"
+      },
+      {
+        "type": "drug",
+        "event": "Neutra-Phos",
+        "date": "2155-10-19",
+        "code": "NEUT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Neutra-Phos"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-10-19",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Phosphate",
+        "date": "2155-10-19",
+        "code": "KPHO45I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Phosphate"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Phosphate",
+        "date": "2155-10-19",
+        "code": "KPHO45I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Phosphate"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-10-19",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride Replacement (Critical Care and Oncology) ",
+        "date": "2155-10-19",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride Replacement (Critical Care and Oncology) "
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-19",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-19",
+        "code": "NS500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-20",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Neutra-Phos",
+        "date": "2155-10-20",
+        "code": "NEUT",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Neutra-Phos"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-20",
+        "code": "KCL20P",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-20",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "HYDROmorphone (Dilaudid)",
+        "date": "2155-10-20",
+        "code": "HYDR1SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "HYDROmorphone (Dilaudid)"
+      },
+      {
+        "type": "drug",
+        "event": "ruxolitinib",
+        "date": "2155-10-21",
+        "code": "nan",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "ruxolitinib"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE SR (OxyconTIN)",
+        "date": "2155-10-21",
+        "code": "OXYC10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE SR (OxyconTIN)"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-21",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-21",
+        "code": "FURO40I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE (Immediate Release)",
+        "date": "2155-10-22",
+        "code": "OXYC5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE (Immediate Release)"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-22",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Rasburicase",
+        "date": "2155-10-22",
+        "code": "RASB1.5I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Rasburicase"
+      },
+      {
+        "type": "drug",
+        "event": "Potassium Chloride",
+        "date": "2155-10-22",
+        "code": "MICROK10",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Potassium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "0.9% Sodium Chloride",
+        "date": "2155-10-22",
+        "code": "NS50",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "0.9% Sodium Chloride"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-22",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "OxyCODONE SR (OxyconTIN)",
+        "date": "2155-10-23",
+        "code": "OXYC20",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "OxyCODONE SR (OxyconTIN)"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-23",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-10-23",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-10-23",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-10-23",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-10-23",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-10-24",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-10-24",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-24",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-24",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine 1% (For PICC/Midline Insertions)",
+        "date": "2155-10-24",
+        "code": "LIDO15AM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine 1% (For PICC/Midline Insertions)"
+      },
+      {
+        "type": "drug",
+        "event": "Lidocaine 1% (For PICC/Midline Insertions)",
+        "date": "2155-10-24",
+        "code": "LIDO15AM",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Lidocaine 1% (For PICC/Midline Insertions)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-10-24",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride 0.9%  Flush",
+        "date": "2155-10-24",
+        "code": "NACLFLUSH",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride 0.9%  Flush"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin Flush (10 units/ml)",
+        "date": "2155-10-24",
+        "code": "HEPA10SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin Flush (10 units/ml)"
+      },
+      {
+        "type": "drug",
+        "event": "Heparin Flush (10 units/ml)",
+        "date": "2155-10-24",
+        "code": "HEPA10SYR",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Heparin Flush (10 units/ml)"
+      },
+      {
+        "type": "drug",
+        "event": "Sodium Chloride Nasal",
+        "date": "2155-10-24",
+        "code": "SODI65S",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Sodium Chloride Nasal"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-25",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "sevelamer CARBONATE",
+        "date": "2155-10-25",
+        "code": "RENV800",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "sevelamer CARBONATE"
+      },
+      {
+        "type": "drug",
+        "event": "Bisacodyl",
+        "date": "2155-10-26",
+        "code": "BISA10R",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bisacodyl"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2155-10-26",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Bisacodyl",
+        "date": "2155-10-26",
+        "code": "BISA5",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Bisacodyl"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-10-26",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-10-27",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-27",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-27",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-10-27",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Vial",
+        "date": "2155-10-28",
+        "code": "VIAL",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Vial"
+      },
+      {
+        "type": "drug",
+        "event": "CefTRIAXone",
+        "date": "2155-10-28",
+        "code": "CEFR1I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "CefTRIAXone"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-10-28",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-10-30",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Piperacillin-Tazobactam",
+        "date": "2155-10-30",
+        "code": "ZOSY4FPB",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Piperacillin-Tazobactam"
+      },
+      {
+        "type": "drug",
+        "event": "Iso-Osmotic Dextrose",
+        "date": "2155-10-30",
+        "code": "FRBD100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Iso-Osmotic Dextrose"
+      },
+      {
+        "type": "drug",
+        "event": "Polyethylene Glycol",
+        "date": "2155-10-31",
+        "code": "GLYC17",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Polyethylene Glycol"
+      },
+      {
+        "type": "drug",
+        "event": "Docusate Sodium",
+        "date": "2155-10-31",
+        "code": "DOCU100",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Docusate Sodium"
+      },
+      {
+        "type": "drug",
+        "event": "Senna",
+        "date": "2155-10-31",
+        "code": "SENN187",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Senna"
+      },
+      {
+        "type": "drug",
+        "event": "Hydroxyurea",
+        "date": "2155-11-01",
+        "code": "HYDU500",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Hydroxyurea"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-11-02",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      },
+      {
+        "type": "drug",
+        "event": "Furosemide",
+        "date": "2155-11-03",
+        "code": "FURO20I",
+        "code_type": "PRODUCT-CODE",
+        "code_descr": "Furosemide"
+      }
+    ]
+  }
+]
