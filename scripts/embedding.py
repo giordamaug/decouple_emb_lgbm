@@ -134,7 +134,6 @@ def BEHRTembedder(sequences,
     return train_df, test_df
 
 def DOMEEmbedder(sequences,
-                 labels,
                  targets,
                  df,
                  train_idx=None,
@@ -144,8 +143,7 @@ def DOMEEmbedder(sequences,
                  frame_plot=None,
                 ):
     all_idx = np.concatenate((train_idx, valid_idx), axis=0)
-    sequences_ = { id: events + [("dead", events[-1][1])] if labels[id]==1 else events for id,events in sequences.items()} 
-    events_fold_train = {id: sequences_[int(id)] for id in train_idx if int(id) in sequences_}
+    events_fold_train = {id: sequences[int(id)] for id in train_idx if int(id) in sequences}
     with frame_tqdm:
         frame_tqdm.clear_output(wait=True)
         cooc_prior, vocabular = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='prior')
