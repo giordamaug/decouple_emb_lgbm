@@ -149,9 +149,8 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
         {
             "func": DOMEEmbedder,
             "kwargs": {
-                 "sequences": event_sequences,
-                 "labels": labels,
-                 "targets": [args.target_var],
+                 "sequences": { id: events + [("dead", events[-1][1])] if labels[id]==1 else events for id,events in event_sequences.items()}, 
+                 "targets": ["dead"],
                  "df": args.dataset,
                  "enable_plot": args.enable_plot
             }
