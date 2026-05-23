@@ -1,5 +1,5 @@
 from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEREmbedder, TimeAwareLSTMEmbedder, DipoleEmbedder 
-from .embedding import StaticEmbedder, RETAINembedder, DOMEEmbedder, BINARYEmbedder, GRUEmbedder, GRUEDembedder
+from .embedding import StaticEmbedder, RETAINembedder, DOMEEmbedder, BINARYEmbedder, GRUEmbedder, GRUEDembedder, Med2VecEmbedder
 from .classifiers import FlexLSTMclassifier, DipoleClassifier, BEHRTclassifier, GRUclassifier, GRUDclassifier
 
 def configure(event_sequences, visit_sequences, labels, X_static, args):
@@ -99,6 +99,19 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
         },
         "tLSTM" : 
         {   "func": TimeAwareLSTMEmbedder,
+            "kwargs": {
+                "sequences": event_sequences,
+                "labels": labels,
+                "word_to_idx": word_to_idx,
+                "num_epochs": args.num_epochs,
+                "batch_size": args.batch_size,
+                "embed_size": args.embedding_dim,
+                "hidden_size": args.hidden_dim,
+                "enable_plot": args.enable_plot
+            }
+        },
+        "M2V" : 
+        {   "func": Med2VecEmbedder,
             "kwargs": {
                 "sequences": event_sequences,
                 "labels": labels,
