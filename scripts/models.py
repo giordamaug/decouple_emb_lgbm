@@ -2438,9 +2438,19 @@ class TimeAwareLSTMModel(nn.Module):
 # DATASET
 # =========================
 class Med2VecDataset(Dataset):
-    def __init__(self, sequences_dict, labels_dict=None):
+    def __init__(self, sequences_dict, labels_dict=None, word_to_idx=None):
         self.ids = list(sequences_dict.keys())
-        self.sequences = [sequences_dict[_id] for _id in self.ids]
+
+        # ✅ encoding UNA SOLA VOLTA (non in __getitem__)
+        self.sequences = []
+        for _id in self.ids:
+            visits = sequences_dict[_id]
+
+            encoded_visits = []
+            for visit in visits:
+                encoded_visits.append([word_to_idx.get(c, 0) for c in visit])
+
+            self.sequences.append(encoded_visits)
 
         if labels_dict is not None:
             self.labels = [torch.tensor(labels_dict[_id], dtype=torch.float) for _id in self.ids]
@@ -2492,6 +2502,7 @@ def med2vec_collate(batch, pad_token=0):
         padded_seq = []
 
         for visit in seq:
+            visit = list(visit)
             v = visit + [pad_token] * (max_codes - len(visit))
             padded_seq.append(v)
 
@@ -2557,11 +2568,11 @@ class Med2VecModel(nn.Module):
 
         for t in range(V - 1):
             vt = visit_emb[:, t, :]
-            target_codes = x[:, t+1, :]
-
+            target_codes = x[:, t+1, :]  # (B, C)
+            target = torch.zeros(x.size(0), self.output_layer.out_features, device=x.device)
+            target.scatter_(1, target_codes, 1.0)
+            target[:, 0] = 0  # ignora padding
             logits = self.output_layer(vt)
-            target = (target_codes > 0).float()
-
             loss = F.binary_cross_entropy_with_logits(logits, target)
             losses.append(loss)
 
@@ -2574,48 +2585,80 @@ class Med2VecModel(nn.Module):
     # =========================
     # TRAIN
     # =========================
-    def train_model(self, train_loader, val_loader=None, num_epochs=10, lr=1e-3, lambda_visit=0.1):
+    def train_model(self, 
+                    train_loader, 
+                    val_loader=None, 
+                    num_epochs=10, 
+                    lr=1e-3,
+                    lambda_visit=0.1,
+                    enable_plot=False,
+                    frame_tqdm=None,
+                    frame_plot=None,
+                    plotsize=(4,5)):
+
         self.to(self.device)
         optimizer = torch.optim.Adam(self.parameters(), lr=lr)
         criterion = nn.BCEWithLogitsLoss()
 
         train_losses, val_losses, val_aucs = [], [], []
 
-        for epoch in range(num_epochs):
-            self.train()
-            total_loss = 0
+        with frame_tqdm:
+            frame_tqdm.clear_output(wait=True)
 
-            for batch in train_loader:
-                ids, x, y = batch
+            pbar = tqdm(range(num_epochs), total=num_epochs, desc=f"Training [{self.name}]")
 
-                x = x.long().to(self.device)
-                y = y.float().unsqueeze(1).to(self.device)
+            for epoch in pbar:
+                # =========================
+                # TRAIN
+                # =========================
+                self.train()
+                total_loss = 0
 
-                optimizer.zero_grad()
+                for batch in train_loader:
+                    optimizer.zero_grad()
 
-                logits, patient_emb, visit_emb = self(x)
+                    ids, x, y = batch
 
-                loss_cls = criterion(logits, y)
-                loss_visit = self.compute_visit_loss(visit_emb, x)
+                    x = x.long().to(self.device)
+                    y = y.float().unsqueeze(1).to(self.device)
 
-                loss = loss_cls + lambda_visit * loss_visit
+                    logits, patient_emb, visit_emb = self(x)
 
-                loss.backward()
-                optimizer.step()
+                    loss_cls = criterion(logits, y)
+                    loss_visit = self.compute_visit_loss(visit_emb, x)
 
-                total_loss += loss.item()
+                    loss = loss_cls + lambda_visit * loss_visit
 
-            avg_train_loss = total_loss / len(train_loader)
-            train_losses.append(avg_train_loss)
+                    loss.backward()
+                    optimizer.step()
 
-            if val_loader is not None:
-                val_loss, auc = self.evaluate(val_loader)
-                val_losses.append(val_loss)
-                val_aucs.append(auc)
+                    total_loss += loss.item()
 
-                print(f"Epoch {epoch+1} | Train {avg_train_loss:.4f} | Val {val_loss:.4f} | AUC {auc:.4f}")
-            else:
-                print(f"Epoch {epoch+1} | Train {avg_train_loss:.4f}")
+                avg_train_loss = total_loss / len(train_loader)
+                train_losses.append(avg_train_loss)
+
+                # =========================
+                # VALIDATION
+                # =========================
+                if val_loader is not None:
+                    val_loss, auc = self.evaluate(val_loader)
+                    val_losses.append(val_loss)
+                    val_aucs.append(auc)
+
+                    pbar.set_postfix({
+                        'Train Loss': round(avg_train_loss, 3),
+                        'Val Loss': round(val_loss, 3),
+                        'AUC': round(auc, 3)
+                    })
+                else:
+                    pbar.set_postfix({'Train Loss': round(avg_train_loss, 3)})
+
+                # =========================
+                # PLOT LIVE
+                # =========================
+                with frame_plot:
+                    if enable_plot:
+                        plot_foo(self.name, train_losses, val_losses, size=plotsize)
 
         return train_losses, val_losses
 
