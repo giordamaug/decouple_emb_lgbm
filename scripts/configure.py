@@ -116,6 +116,7 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
                 "sequences": event_sequences,
                 "labels": labels,
                 "word_to_idx": word_to_idx,
+                'lambda_visit': 0.5,
                 "num_epochs": args.num_epochs,
                 "batch_size": args.batch_size,
                 "embed_size": args.embedding_dim,
