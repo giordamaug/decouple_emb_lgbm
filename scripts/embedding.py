@@ -7,6 +7,7 @@ from .models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
 from .models import DipoleDataset, DipoleModel, dipole_collate
 from .models import TimeAwareLSTMModel, timeaware_collate_fn, TimeAwareLSTMDataset
 from .models import DOME, co_occurrence_infectious_window,compute_directional_ppmi, riskmatrix_loop_fb_dome
+from .models import Med2VecDataset, Med2VecModel, med2vec_collate
 from collections import Counter
 import torch
 from torch.utils.data import DataLoader
@@ -380,5 +381,32 @@ def TimeAwareLSTMEmbedder(sequences, word_to_idx, train_idx, valid_idx,
     df_valid = pd.DataFrame(valid_emb, index=valid_idx)
     df_train.columns = [f"tLSTM_{i}" for i in range(df_train.shape[1])]
     df_valid.columns = [f"tLSTM_{i}" for i in range(df_valid.shape[1])]
+
+    return df_train, df_valid
+
+def Med2VecEmbedder(sequences, word_to_idx, train_idx, valid_idx,
+                          labels, embed_size=64, hidden_size=64,
+                          batch_size=32, num_epochs=10, enable_plot=False,
+                          frame_tqdm=None, frame_plot=None):
+
+
+    train_sequences = {pid: sequences[pid] for pid in train_idx}
+    valid_sequences = {pid: sequences[pid] for pid in valid_idx}
+
+    train_ds = Med2VecDataset(train_sequences, labels, word_to_idx)
+    valid_ds = Med2VecDataset(valid_sequences, labels, word_to_idx)
+
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
+    valid_loader = torch.utils.data.DataLoader(valid_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
+    model = Med2VecModel(vocab_size=len(word_to_idx),embed_dim=embed_size, visit_dim=64)
+    model.train_model(train_loader, val_loader=None, num_epochs=num_epochs, enable_plot=enable_plot, 
+                      frame_tqdm=frame_tqdm, frame_plot=frame_plot, plotsize=plotsize)
+    train_emb, tids = model.get_embeddings(train_loader)
+    valid_emb, vids = model.get_embeddings(valid_loader)
+
+    df_train = pd.DataFrame(train_emb, index=train_idx)
+    df_valid = pd.DataFrame(valid_emb, index=valid_idx)
+    df_train.columns = [f"M2V_{i}" for i in range(df_train.shape[1])]
+    df_valid.columns = [f"M2V_{i}" for i in range(df_valid.shape[1])]
 
     return df_train, df_valid
