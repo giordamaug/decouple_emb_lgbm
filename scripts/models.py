@@ -2434,4 +2434,244 @@ class TimeAwareLSTMModel(nn.Module):
 
         return torch.cat(patient_embs, dim=0).numpy(), patient_ids
 
+# =========================
+# DATASET
+# =========================
+class Med2VecDataset(Dataset):
+    def __init__(self, sequences_dict, labels_dict=None):
+        self.ids = list(sequences_dict.keys())
+        self.sequences = [sequences_dict[_id] for _id in self.ids]
 
+        if labels_dict is not None:
+            self.labels = [torch.tensor(labels_dict[_id], dtype=torch.float) for _id in self.ids]
+        else:
+            self.labels = None
+
+    def __len__(self):
+        return len(self.sequences)
+
+    def __getitem__(self, idx):
+        _id = self.ids[idx]
+        visits = self.sequences[idx]
+
+        # ✅ gestione sequenze vuote
+        if len(visits) == 0:
+            visits = [[0]]
+
+        if self.labels is None:
+            return _id, visits
+        else:
+            return _id, visits, self.labels[idx]
+
+
+# =========================
+# COLLATE FUNCTION
+# =========================
+def med2vec_collate(batch, pad_token=0):
+    ids = []
+    sequences = []
+    labels = []
+
+    has_labels = len(batch[0]) == 3
+
+    for item in batch:
+        if has_labels:
+            _id, visits, y = item
+            labels.append(y)
+        else:
+            _id, visits = item
+
+        ids.append(_id)
+        sequences.append(visits)
+
+    max_visits = max(len(seq) for seq in sequences)
+    max_codes = max(len(v) for seq in sequences for v in seq)
+
+    padded = []
+    for seq in sequences:
+        padded_seq = []
+
+        for visit in seq:
+            v = visit + [pad_token] * (max_codes - len(visit))
+            padded_seq.append(v)
+
+        for _ in range(max_visits - len(seq)):
+            padded_seq.append([pad_token] * max_codes)
+
+        padded.append(padded_seq)
+
+    x = torch.tensor(padded, dtype=torch.long)  # (B, V, C)
+
+    if has_labels:
+        y = torch.stack(labels)
+        return ids, x, y
+    else:
+        return ids, x
+
+
+# =========================
+# MODEL
+# =========================
+class Med2VecModel(nn.Module):
+    def __init__(self, vocab_size, embed_dim, visit_dim, name='Med2Vec'):
+        super().__init__()
+        self.name = name
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        # Code embedding
+        self.code_embedding = nn.Embedding(vocab_size, embed_dim, padding_idx=0)
+
+        # Visit embedding (MLP)
+        self.visit_layer = nn.Linear(embed_dim, visit_dim)
+
+        # Visit prediction (skip-gram style)
+        self.output_layer = nn.Linear(visit_dim, vocab_size)
+
+        # Classifier
+        self.classifier = nn.Linear(visit_dim, 1)
+
+    def forward(self, x):
+        # x: (B, V, C)
+        emb = self.code_embedding(x)  # (B, V, C, D)
+
+        mask = (x != 0).unsqueeze(-1)
+        emb = emb * mask
+
+        # sum codes → visit embedding
+        visit_emb = emb.sum(dim=2)  # (B, V, D)
+
+        # MLP + ReLU
+        visit_emb = torch.relu(self.visit_layer(visit_emb))  # (B, V, visit_dim)
+
+        # patient embedding
+        patient_emb = visit_emb.mean(dim=1)  # (B, visit_dim)
+
+        logits = self.classifier(patient_emb)
+
+        return logits, patient_emb, visit_emb
+
+
+    def compute_visit_loss(self, visit_emb, x):
+        B, V, _ = visit_emb.shape
+        losses = []
+
+        for t in range(V - 1):
+            vt = visit_emb[:, t, :]
+            target_codes = x[:, t+1, :]
+
+            logits = self.output_layer(vt)
+            target = (target_codes > 0).float()
+
+            loss = F.binary_cross_entropy_with_logits(logits, target)
+            losses.append(loss)
+
+        if len(losses) == 0:
+            return torch.tensor(0.0, device=self.device)
+
+        return torch.stack(losses).mean()
+
+
+    # =========================
+    # TRAIN
+    # =========================
+    def train_model(self, train_loader, val_loader=None, num_epochs=10, lr=1e-3, lambda_visit=0.1):
+        self.to(self.device)
+        optimizer = torch.optim.Adam(self.parameters(), lr=lr)
+        criterion = nn.BCEWithLogitsLoss()
+
+        train_losses, val_losses, val_aucs = [], [], []
+
+        for epoch in range(num_epochs):
+            self.train()
+            total_loss = 0
+
+            for batch in train_loader:
+                ids, x, y = batch
+
+                x = x.long().to(self.device)
+                y = y.float().unsqueeze(1).to(self.device)
+
+                optimizer.zero_grad()
+
+                logits, patient_emb, visit_emb = self(x)
+
+                loss_cls = criterion(logits, y)
+                loss_visit = self.compute_visit_loss(visit_emb, x)
+
+                loss = loss_cls + lambda_visit * loss_visit
+
+                loss.backward()
+                optimizer.step()
+
+                total_loss += loss.item()
+
+            avg_train_loss = total_loss / len(train_loader)
+            train_losses.append(avg_train_loss)
+
+            if val_loader is not None:
+                val_loss, auc = self.evaluate(val_loader)
+                val_losses.append(val_loss)
+                val_aucs.append(auc)
+
+                print(f"Epoch {epoch+1} | Train {avg_train_loss:.4f} | Val {val_loss:.4f} | AUC {auc:.4f}")
+            else:
+                print(f"Epoch {epoch+1} | Train {avg_train_loss:.4f}")
+
+        return train_losses, val_losses
+
+
+    # =========================
+    # EVALUATE
+    # =========================
+    @torch.no_grad()
+    def evaluate(self, dataloader):
+        self.eval()
+        criterion = nn.BCEWithLogitsLoss()
+
+        total_loss = 0
+        preds, trues = [], []
+
+        for batch in dataloader:
+            ids, x, y = batch
+
+            x = x.long().to(self.device)
+            y = y.float().unsqueeze(1).to(self.device)
+
+            logits, _, _ = self(x)
+
+            loss = criterion(logits, y)
+            total_loss += loss.item()
+
+            probs = torch.sigmoid(logits).cpu().numpy()
+            preds.extend(probs)
+            trues.extend(y.cpu().numpy())
+
+        avg_loss = total_loss / len(dataloader)
+
+        try:
+            auc = roc_auc_score(trues, preds)
+        except:
+            auc = float("nan")
+
+        return avg_loss, auc
+
+
+    # =========================
+    # EMBEDDINGS
+    # =========================
+    @torch.no_grad()
+    def get_embeddings(self, dataloader):
+        self.eval()
+        all_feats = []
+        all_ids = []
+
+        for batch in dataloader:
+            ids, x = batch[:2]
+
+            x = x.long().to(self.device)
+            _, feats, _ = self(x)
+
+            all_feats.append(feats.cpu().numpy())
+            all_ids.extend(ids)
+
+        return np.vstack(all_feats), np.array(all_ids)
