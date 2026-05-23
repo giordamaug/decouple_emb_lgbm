@@ -385,7 +385,7 @@ def TimeAwareLSTMEmbedder(sequences, word_to_idx, train_idx, valid_idx,
     return df_train, df_valid
 
 def Med2VecEmbedder(sequences, word_to_idx, train_idx, valid_idx,
-                          labels, embed_size=64, hidden_size=64,
+                          labels, embed_size=64, hidden_size=64, lambda_visit=0.1,
                           batch_size=32, num_epochs=10, enable_plot=False,
                           frame_tqdm=None, frame_plot=None):
 
@@ -399,7 +399,7 @@ def Med2VecEmbedder(sequences, word_to_idx, train_idx, valid_idx,
     train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
     valid_loader = torch.utils.data.DataLoader(valid_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
     model = Med2VecModel(vocab_size=len(word_to_idx),embed_dim=embed_size, visit_dim=64)
-    model.train_model(train_loader, val_loader=None, num_epochs=num_epochs, enable_plot=enable_plot, 
+    model.train_model(train_loader, val_loader=None, num_epochs=num_epochs, lambda_visit=lambda_visit, enable_plot=enable_plot, 
                       frame_tqdm=frame_tqdm, frame_plot=frame_plot, plotsize=plotsize)
     train_emb, tids = model.get_embeddings(train_loader)
     valid_emb, vids = model.get_embeddings(valid_loader)
