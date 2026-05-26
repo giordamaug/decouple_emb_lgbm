@@ -2,7 +2,9 @@ import torch
 import numpy as np
 import lightgbm as lgb
 from transformers import AutoTokenizer, AutoModel
-
+import pandas as pd
+from sklearn.metrics import *
+from .models import FlexibleLSTMModel
 
 # =========================================================
 # 1. CLINICALBERT ENCODER (WITH CACHE)
@@ -116,13 +118,15 @@ def train_lgbm(X_train, y_train, X_valid, y_valid):
     model = lgb.LGBMClassifier(
         n_estimators=500,
         learning_rate=0.05,
-        num_leaves=31
+        num_leaves=31,
+        objective = 'binary',
+        is_unbalance = True
     )
 
     model.fit(
         X_train, y_train,
         eval_set=[(X_valid, y_valid)],
-        eval_metric="auc"
+        eval_metric="mcc"
     )
 
     return model
@@ -166,6 +170,65 @@ def encode_patients(sequence_embeddings, model=None, mode="mean"):
 # 7. FULL PIPELINE
 # =========================================================
 
+def mcc_eval(y_pred, dataset):
+    y_true = dataset.get_label()
+    y_pred_labels = (y_pred > 0.5).astype(int)
+    mcc = matthews_corrcoef(y_true, y_pred_labels)
+    return 'MCC', mcc, True
+
+lgb_params = {
+    'objective': 'binary',
+    'metric': 'None',
+    'verbosity': -3,
+    'is_unbalance': True
+}
+
+def run_pipeline_lg(train_seq, valid_seq, y_train, y_valid,
+                 mode="mean"):
+
+    encoder = ClinicalBERTEncoder()
+
+    train_emb_seq = build_patient_embeddings(train_seq, encoder)
+    valid_emb_seq = build_patient_embeddings(valid_seq, encoder)
+
+    if mode == "retain":
+        seq_model = SimpleRETAIN(input_dim=768, hidden_dim=128)
+    elif mode == "lstm":
+        seq_model = LSTMEncoder(input_dim=768, hidden_dim=128)
+    elif mode == "BiPadLSTM":
+        seq_model = FlexibleLSTMModel(vocab_size=768,
+        embed_dim=64,
+        hidden_dim=128,
+        pooling=True,
+        bidirectional=True,
+        use_padding=True,
+        use_attention=False,
+        name="BiPadLSTM")
+    else:
+        seq_model = None
+
+    X_train, train_idx = encode_patients(train_emb_seq, seq_model, mode=mode)
+    X_valid, valid_idx = encode_patients(valid_emb_seq, seq_model, mode=mode)
+    
+    train_df = pd.DataFrame(X_train, index=train_idx)
+    test_df = pd.DataFrame(X_valid, index=valid_idx)
+
+    train_data = lgb.Dataset(train_df, label=y_train)
+    valid_data = lgb.Dataset(test_df, label=y_valid)
+
+    clf = lgb.train(
+        lgb_params,
+        train_data,
+        num_boost_round=1000,
+        valid_sets=[valid_data],
+        feval=mcc_eval,
+        callbacks=[
+            lgb.early_stopping(50),
+            lgb.log_evaluation(0)
+        ]
+    )
+    return clf, test_df, y_valid
+
 def run_pipeline(train_seq, valid_seq, y_train, y_valid,
                  mode="mean"):
 
@@ -186,4 +249,4 @@ def run_pipeline(train_seq, valid_seq, y_train, y_valid,
 
     clf = train_lgbm(X_train, y_train, X_valid, y_valid)
 
-    return clf
+    return clf, X_valid, y_valid
