@@ -55,9 +55,9 @@ class Settings:
             self.dataset_orig = dataset
             self.dataset = self.dataset_orig.copy()
 
+            self.dataset = self.dataset[self.dataset[self.is_splenectomized_field].isin(self.selected_spleen_flags)]
             if not self.noselection:
-                self.dataset = self.dataset[(self.dataset[self.pathology_field].isin(self.pathologies.keys())) & 
-                                            (self.dataset[self.is_splenectomized_field].isin(self.selected_spleen_flags))]
+                self.dataset = self.dataset[self.dataset[self.pathology_field].isin(self.pathologies.keys())]
             
             print(f"Loaded {len(self.dataset)} records from {self.datafile}")
             self.selected_patient_ids = self.dataset.index.values
