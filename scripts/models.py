@@ -1034,89 +1034,8 @@ class RETAINModel(nn.Module):
 # CEHR-BERT
 #------------------------------------------------------------------------------------------------
 
-def cehrbert_collate_fn(batch, pad_idx=0, max_len=512):
-    ids = [item["id"] for item in batch]
-    sequences = [item["input_ids"][:max_len] for item in batch]
-
-    max_batch_len = max(len(seq) for seq in sequences)
-
-    input_ids = []
-
-    for seq in sequences:
-        pad_len = max_batch_len - len(seq)
-        input_ids.append(seq + [pad_idx] * pad_len)
-
-    x = torch.tensor(input_ids, dtype=torch.long)
-
-    has_types = "token_types" in batch[0]
-    has_labels = "label" in batch[0]
-
-    token_types_tensor = None
-
-    if has_types:
-        token_types = [item["token_types"][:max_len] for item in batch]
-        padded_types = []
-
-        for tt in token_types:
-            pad_len = max_batch_len - len(tt)
-            padded_types.append(tt + [0] * pad_len)
-
-        token_types_tensor = torch.tensor(padded_types, dtype=torch.long)
-
-    if has_types and has_labels:
-        y = torch.tensor([item["label"] for item in batch], dtype=torch.float)
-        return ids, x, token_types_tensor, y
-
-    if has_types and not has_labels:
-        return ids, x, token_types_tensor
-
-    if not has_types and has_labels:
-        y = torch.tensor([item["label"] for item in batch], dtype=torch.float)
-        return ids, x, y
-
-    return ids, x
-
-class CEHRBERTDataset(torch.utils.data.Dataset):
-    def __init__(self, sequences, labels_dict=None, event_type_dict=None):
-        self.ids = list(sequences.keys())
-        self.sequences = sequences
-        self.labels_dict = labels_dict
-        self.event_type_dict = event_type_dict
-
-    def __len__(self):
-        return len(self.ids)
-
-    def __getitem__(self, idx):
-        patient_id = self.ids[idx]
-        seq = self.sequences[patient_id]
-
-        if len(seq) > 0 and isinstance(seq[0], tuple):
-            input_ids = [x[0] for x in seq]
-        else:
-            input_ids = seq
-
-        item = {
-            "id": patient_id,
-            "input_ids": input_ids
-        }
-
-        if self.labels_dict is not None:
-            item["label"] = self.labels_dict[patient_id]
-
-        if self.event_type_dict is not None:
-            item["token_types"] = self.event_type_dict[patient_id]
-
-        return item
-
-import copy
-import math
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-
 class BinaryFocalLoss(nn.Module):
-    def __init__(self, alpha=0.75, gamma=2.0, reduction="mean"):
+    def __init__(self, alpha=0.85, gamma=2.0, reduction="mean"):
         super().__init__()
         self.alpha = alpha
         self.gamma = gamma
@@ -1143,49 +1062,148 @@ class BinaryFocalLoss(nn.Module):
         return loss
 
 
-import copy
-import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+class CEHRBERTDataset(Dataset):
+    def __init__(
+        self,
+        sequences,
+        labels_dict=None,
+        word_to_idx=None,
+        event_type_dict=None,
+        max_len=512,
+        unk_idx=1
+    ):
+        self.ids = list(sequences.keys())
+        self.sequences = sequences
+        self.labels_dict = labels_dict
+        self.word_to_idx = word_to_idx
+        self.event_type_dict = event_type_dict
+        self.max_len = max_len
+        self.unk_idx = unk_idx
 
-from tqdm.auto import tqdm
-from sklearn.metrics import roc_auc_score
+    def __len__(self):
+        return len(self.ids)
+
+    def _convert_token(self, token):
+        if isinstance(token, int):
+            return token
+
+        if self.word_to_idx is None:
+            raise ValueError("Found string tokens but word_to_idx is None.")
+
+        return self.word_to_idx.get(token, self.unk_idx)
+
+    def __getitem__(self, idx):
+        patient_id = self.ids[idx]
+        seq = self.sequences[patient_id]
+
+        input_ids = []
+
+        for item in seq:
+            if isinstance(item, tuple):
+                token = item[0]
+            else:
+                token = item
+
+            input_ids.append(self._convert_token(token))
+
+        input_ids = input_ids[:self.max_len]
+
+        item = {
+            "id": patient_id,
+            "input_ids": input_ids,
+        }
+
+        if self.labels_dict is not None:
+            item["label"] = self.labels_dict[patient_id]
+
+        #if self.event_type_dict is not None:
+        #    item["token_types"] = self.event_type_dict[patient_id][:self.max_len]
+        if self.event_type_dict is not None:
+            token_types = self.event_type_dict[patient_id]
+
+            if isinstance(token_types, tuple):
+                print("Bad token_types tuple:", patient_id, token_types)
+                raise ValueError(
+                    f"event_type_dict[{patient_id}] deve essere una lista di interi, "
+                    f"ma è una tuple: {token_types}"
+                )
+
+            token_types = list(token_types)[:self.max_len]
+
+            if len(token_types) != len(input_ids):
+                raise ValueError(
+                    f"Mismatch for patient {patient_id}: "
+                    f"len(input_ids)={len(input_ids)}, "
+                    f"len(token_types)={len(token_types)}"
+                )
+
+            item["token_types"] = token_types
+
+        return item
 
 
-class BinaryFocalLoss(nn.Module):
-    def __init__(self, alpha=0.75, gamma=2.0, reduction="mean"):
-        super().__init__()
-        self.alpha = alpha
-        self.gamma = gamma
-        self.reduction = reduction
 
-    def forward(self, logits, targets):
-        logits = logits.view(-1)
-        targets = targets.float().view(-1)
+def cehrbert_collate_fn(batch, pad_idx=0):
+    ids = [item["id"] for item in batch]
 
-        bce = F.binary_cross_entropy_with_logits(
-            logits,
-            targets,
-            reduction="none"
+    sequences = [item["input_ids"] for item in batch]
+    max_len = max(len(seq) for seq in sequences)
+
+    input_ids = []
+    attention_mask = []
+
+    for seq in sequences:
+        seq = list(seq)
+        pad_len = max_len - len(seq)
+
+        input_ids.append(seq + [pad_idx] * pad_len)
+        attention_mask.append([1] * len(seq) + [0] * pad_len)
+
+    out = {
+        "ids": ids,
+        "input_ids": torch.tensor(input_ids, dtype=torch.long),
+        "attention_mask": torch.tensor(attention_mask, dtype=torch.long),
+    }
+
+    if "label" in batch[0]:
+        out["labels"] = torch.tensor(
+            [item["label"] for item in batch],
+            dtype=torch.float
         )
 
-        probs = torch.sigmoid(logits)
-        p_t = probs * targets + (1 - probs) * (1 - targets)
-        alpha_t = self.alpha * targets + (1 - self.alpha) * (1 - targets)
+    if "token_types" in batch[0]:
+        padded_types = []
 
-        loss = alpha_t * ((1 - p_t) ** self.gamma) * bce
+        for item in batch:
+            tt = item["token_types"]
 
-        if self.reduction == "mean":
-            return loss.mean()
-        if self.reduction == "sum":
-            return loss.sum()
+            # caso errato ma frequente: (id, [types])
+            if isinstance(tt, tuple):
+                if len(tt) == 2 and isinstance(tt[1], (list, tuple)):
+                    tt = tt[1]
+                else:
+                    raise ValueError(
+                        f"token_types for id={item['id']} is a bad tuple: {tt}"
+                    )
 
-        return loss
+            tt = list(tt)
+
+            if len(tt) != len(item["input_ids"]):
+                raise ValueError(
+                    f"Mismatch id={item['id']}: "
+                    f"len(input_ids)={len(item['input_ids'])}, "
+                    f"len(token_types)={len(tt)}"
+                )
+
+            pad_len = max_len - len(tt)
+            padded_types.append(tt + [0] * pad_len)
+
+        out["token_types"] = torch.tensor(padded_types, dtype=torch.long)
+
+    return out
 
 
 class CEHRBERTModel(nn.Module):
-
     def __init__(
         self,
         vocab_size,
@@ -1195,23 +1213,17 @@ class CEHRBERTModel(nn.Module):
         num_layers=2,
         max_len=512,
         dropout=0.1,
-        pooling="cls",          # "cls", "mean", "attention"
-        use_token_type=False,
-        n_event_types=4,
-        name="CEHRBERT"
+        pooling="attention",      # "cls", "mean", "attention"
+        use_token_type=True,
+        n_event_types=4,          # 0 pad/unknown, 1 disease, 2 procedure, 3 medication
+        name="CEHRBERT",
     ):
         super().__init__()
 
-        self.name = name
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-        self.vocab_size = vocab_size
-        self.embed_dim = embed_dim
-        self.hidden_dim = hidden_dim
-        self.num_heads = num_heads
-        self.num_layers = num_layers
-        self.max_len = max_len
+        self.name = name
         self.pooling = pooling
+        self.max_len = max_len
         self.use_token_type = use_token_type
 
         self.token_embedding = nn.Embedding(
@@ -1220,17 +1232,10 @@ class CEHRBERTModel(nn.Module):
             padding_idx=0
         )
 
-        self.position_embedding = nn.Embedding(
-            max_len,
-            embed_dim
-        )
+        self.position_embedding = nn.Embedding(max_len, embed_dim)
 
         if use_token_type:
-            self.type_embedding = nn.Embedding(
-                n_event_types,
-                embed_dim,
-                padding_idx=0
-            )
+            self.type_embedding = nn.Embedding(n_event_types, embed_dim)
         else:
             self.type_embedding = None
 
@@ -1240,7 +1245,7 @@ class CEHRBERTModel(nn.Module):
             dim_feedforward=hidden_dim * 4,
             dropout=dropout,
             batch_first=True,
-            activation="gelu"
+            activation="gelu",
         )
 
         self.encoder = nn.TransformerEncoder(
@@ -1249,108 +1254,60 @@ class CEHRBERTModel(nn.Module):
         )
 
         if pooling == "attention":
-            self.attention = nn.Linear(embed_dim, 1)
+            self.attention = nn.Sequential(
+                nn.Linear(embed_dim, hidden_dim),
+                nn.Tanh(),
+                nn.Linear(hidden_dim, 1),
+            )
 
         self.dropout = nn.Dropout(dropout)
         self.classifier = nn.Linear(embed_dim, 1)
 
-    def forward(self, x, token_types=None):
-        """
-        x: LongTensor [batch, seq_len]
-        token_types: opzionale LongTensor [batch, seq_len]
-        """
+    def forward(self, input_ids, attention_mask=None, token_types=None):
+        batch_size, seq_len = input_ids.shape
+        device = input_ids.device
 
-        x = x[:, :self.max_len]
+        positions = torch.arange(seq_len, device=device).unsqueeze(0)
+        positions = positions.expand(batch_size, seq_len)
 
-        if token_types is not None:
-            token_types = token_types[:, :self.max_len]
-
-        batch_size, seq_len = x.shape
-        attention_mask = (x != 0)
-
-        positions = torch.arange(seq_len, device=x.device)
-        positions = positions.unsqueeze(0).expand(batch_size, seq_len)
-
-        h = self.token_embedding(x)
-        h = h + self.position_embedding(positions)
+        x = self.token_embedding(input_ids)
+        x = x + self.position_embedding(positions)
 
         if self.use_token_type and token_types is not None:
-            h = h + self.type_embedding(token_types)
+            x = x + self.type_embedding(token_types)
 
-        key_padding_mask = ~attention_mask
+        if attention_mask is None:
+            attention_mask = (input_ids != 0).long()
+
+        key_padding_mask = attention_mask == 0
 
         encoded = self.encoder(
-            h,
+            x,
             src_key_padding_mask=key_padding_mask
         )
 
-        feat = self._pool(encoded, attention_mask)
+        patient_embedding = self.pool(encoded, attention_mask)
+        logits = self.classifier(self.dropout(patient_embedding)).view(-1)
 
-        logits = self.classifier(self.dropout(feat))
+        return logits, patient_embedding
 
-        return logits, feat
-
-    def _pool(self, encoded, attention_mask):
+    def pool(self, encoded, attention_mask):
         if self.pooling == "cls":
             return encoded[:, 0, :]
 
         if self.pooling == "mean":
             mask = attention_mask.unsqueeze(-1).float()
-            return (encoded * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-8)
+            summed = (encoded * mask).sum(dim=1)
+            denom = mask.sum(dim=1).clamp(min=1e-8)
+            return summed / denom
 
         if self.pooling == "attention":
             scores = self.attention(encoded).squeeze(-1)
-            scores = scores.masked_fill(
-                ~attention_mask,
-                torch.finfo(scores.dtype).min
-            )
+            scores = scores.masked_fill(attention_mask == 0, -1e9)
             weights = torch.softmax(scores, dim=1)
             return torch.sum(encoded * weights.unsqueeze(-1), dim=1)
 
-        raise ValueError(f"pooling non valido: {self.pooling}")
-
-    def _unpack_batch(self, batch, with_y=True):
-        """
-        Supporta batch:
-        - (ids, x)
-        - (ids, x, y)
-        - (ids, x, token_types)
-        - (ids, x, token_types, y)
-        """
-
-        if len(batch) == 2:
-            ids, x = batch
-            token_types = None
-            y = None
-
-        elif len(batch) == 3:
-            ids, x, third = batch
-
-            if with_y:
-                token_types = None
-                y = third
-            else:
-                token_types = third
-                y = None
-
-        elif len(batch) == 4:
-            ids, x, token_types, y = batch
-
-        else:
-            raise ValueError(
-                "Batch deve essere (id,x), (id,x,y), "
-                "(id,x,token_types) o (id,x,token_types,y)"
-            )
-
-        x = x.long().to(self.device)
-
-        if token_types is not None:
-            token_types = token_types.long().to(self.device)
-
-        if y is not None:
-            y = y.float().unsqueeze(1).to(self.device)
-
-        return ids, x, token_types, y
+        raise ValueError(f"Unknown pooling: {self.pooling}")
 
     def train_model(
         self,
@@ -1359,43 +1316,28 @@ class CEHRBERTModel(nn.Module):
         num_epochs=10,
         lr=1e-4,
         weight_decay=1e-5,
-        loss_type="bce",        # "bce" oppure "focal"
-        focal_alpha=0.75,
-        focal_gamma=2.0,
+        loss_type="focal",      # "focal" oppure "bce"
+        alpha=0.85,
+        gamma=2.0,
         enable_plot=False,
         frame_tqdm=None,
         frame_plot=None,
-        plotsize=(4, 5),
-        patience=None,
-        restore_best=True
+        plotsize=(6, 4),
     ):
-
         self.to(self.device)
 
-        optimizer = torch.optim.AdamW(
-            self.parameters(),
-            lr=lr,
-            weight_decay=weight_decay
-        )
+        optimizer = torch.optim.Adam(self.parameters(),lr=lr,weight_decay=weight_decay)
 
         if loss_type == "focal":
-            criterion = BinaryFocalLoss(
-                alpha=focal_alpha,
-                gamma=focal_gamma
-            )
+            criterion = BinaryFocalLoss(alpha=alpha, gamma=gamma)
         else:
             criterion = nn.BCEWithLogitsLoss()
 
         train_losses, val_losses, val_aucs = [], [], []
 
-        best_state = None
-        best_val_loss = float("inf")
-        bad_epochs = 0
+        context = frame_tqdm if frame_tqdm is not None else nullcontext()
 
-        pbar_context = frame_tqdm if frame_tqdm is not None else nullcontext()
-        plot_context = frame_plot if frame_plot is not None else nullcontext()
-
-        with pbar_context:
+        with context:
             if frame_tqdm is not None:
                 frame_tqdm.clear_output(wait=True)
 
@@ -1412,73 +1354,51 @@ class CEHRBERTModel(nn.Module):
                 for batch in train_loader:
                     optimizer.zero_grad()
 
-                    ids, x, token_types, y = self._unpack_batch(
-                        batch,
-                        with_y=True
+                    input_ids = batch["input_ids"].long().to(self.device)
+                    attention_mask = batch["attention_mask"].long().to(self.device)
+                    y = batch["labels"].float().view(-1).to(self.device)
+
+                    token_types = batch.get("token_types")
+                    if token_types is not None:
+                        token_types = token_types.long().to(self.device)
+
+                    logits, _ = self(
+                        input_ids=input_ids,
+                        attention_mask=attention_mask,
+                        token_types=token_types
                     )
 
-                    if y is None:
-                        continue
-
-                    logits, _ = self(x, token_types=token_types)
+                    logits = logits.view(-1)
 
                     loss = criterion(logits, y)
                     loss.backward()
 
-                    torch.nn.utils.clip_grad_norm_(
-                        self.parameters(),
-                        max_norm=1.0
-                    )
+                    torch.nn.utils.clip_grad_norm_(self.parameters(), 1.0)
 
                     optimizer.step()
-
                     total_loss += loss.item()
 
-                avg_train_loss = (
-                    total_loss / len(train_loader)
-                    if total_loss > 0
-                    else 0
-                )
-
+                avg_train_loss = total_loss / len(train_loader)
                 train_losses.append(avg_train_loss)
 
                 if val_loader is not None:
-                    val_loss, auc = self.evaluate(
-                        val_loader,
-                        loss_type=loss_type,
-                        focal_alpha=focal_alpha,
-                        focal_gamma=focal_gamma
-                    )
-
+                    val_loss, auc = self.evaluate(val_loader, criterion=criterion)
                     val_losses.append(val_loss)
                     val_aucs.append(auc)
-
-                    if val_loss < best_val_loss:
-                        best_val_loss = val_loss
-                        best_state = copy.deepcopy(self.state_dict())
-                        bad_epochs = 0
-                    else:
-                        bad_epochs += 1
 
                     pbar.set_postfix({
                         "Train Loss": round(avg_train_loss, 3),
                         "Val Loss": round(val_loss, 3),
                         "AUC": round(auc, 3)
                     })
-
-                    if patience is not None and bad_epochs >= patience:
-                        pbar.write(
-                            f"[{self.name}] Early stopping at epoch {epoch + 1}"
-                        )
-                        break
-
                 else:
                     pbar.set_postfix({
                         "Train Loss": round(avg_train_loss, 3)
                     })
 
-                with plot_context:
-                    if enable_plot:
+                if enable_plot and frame_plot is not None:
+                    with frame_plot:
+                        #frame_plot.clear_output(wait=True)
                         plot_foo(
                             self.name,
                             train_losses,
@@ -1486,164 +1406,120 @@ class CEHRBERTModel(nn.Module):
                             size=plotsize
                         )
 
-        if restore_best and best_state is not None:
-            self.load_state_dict(best_state)
-
         return train_losses, val_losses
 
-    @torch.no_grad()
-    def evaluate(
-        self,
-        dataloader,
-        loss_type="bce",
-        focal_alpha=0.75,
-        focal_gamma=2.0
-    ):
+                    
+    def evaluate(self, loader, criterion=None):
         self.eval()
 
-        if loss_type == "focal":
-            criterion = BinaryFocalLoss(
-                alpha=focal_alpha,
-                gamma=focal_gamma
-            )
-        else:
+        if criterion is None:
             criterion = nn.BCEWithLogitsLoss()
 
         total_loss = 0.0
-        preds, trues = [], []
+        y_true = []
+        y_score = []
 
-        for batch in dataloader:
-            ids, x, token_types, y = self._unpack_batch(
-                batch,
-                with_y=True
-            )
+        with torch.no_grad():
+            for batch in loader:
+                input_ids = batch["input_ids"].long().to(self.device)
+                attention_mask = batch["attention_mask"].long().to(self.device)
+                y = batch["labels"].float().view(-1).to(self.device)
 
-            logits, _ = self(x, token_types=token_types)
+                token_types = batch.get("token_types")
+                if token_types is not None:
+                    token_types = token_types.long().to(self.device)
 
-            if y is not None:
+                logits, _ = self(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    token_types=token_types
+                )
+
+                logits = logits.view(-1)
+
                 loss = criterion(logits, y)
                 total_loss += loss.item()
 
-                probs = torch.sigmoid(logits).cpu().numpy()
-                preds.extend(probs.ravel())
-                trues.extend(y.cpu().numpy().ravel())
+                probs = torch.sigmoid(logits)
 
-        avg_loss = (
-            total_loss / len(dataloader)
-            if total_loss > 0
-            else 0
-        )
+                y_true.extend(y.detach().cpu().numpy())
+                y_score.extend(probs.detach().cpu().numpy())
+
+        avg_loss = total_loss / len(loader)
 
         try:
-            auc = roc_auc_score(trues, preds) if len(trues) > 0 else float("nan")
-        except Exception:
-            auc = float("nan")
+            auc = roc_auc_score(y_true, y_score)
+        except ValueError:
+            auc = 0.0
 
         return avg_loss, auc
 
-    @torch.no_grad()
-    def get_embeddings(self, dataloader):
-        self.eval()
+    def get_embeddings(self, loader):
         self.to(self.device)
-
-        all_feats = []
-        all_ids = []
-
-        for batch in dataloader:
-            # Qui assumiamo che il batch abbia almeno id,x
-            if len(batch) == 2:
-                ids, x = batch
-                token_types = None
-
-            elif len(batch) == 3:
-                ids, x, third = batch
-
-                # Se il terzo elemento è y, non token_types.
-                # Nel tuo formato classico (id,x,y), quindi qui ignoriamo y.
-                if third.ndim == 1:
-                    token_types = None
-                else:
-                    token_types = third
-
-            elif len(batch) == 4:
-                ids, x, token_types, y = batch
-
-            else:
-                raise ValueError(
-                    "Batch deve essere (id,x), (id,x,y), "
-                    "(id,x,token_types) o (id,x,token_types,y)"
-                )
-
-            x = x.long().to(self.device)
-
-            if token_types is not None:
-                token_types = token_types.long().to(self.device)
-
-            _, feats = self(x, token_types=token_types)
-
-            all_feats.append(feats.cpu().numpy())
-            all_ids.extend(ids)
-
-        embeddings = np.vstack(all_feats)
-        ids_array = np.array(all_ids)
-
-        return embeddings, ids_array
-
-    @torch.no_grad()
-    def predict_proba(self, dataloader):
         self.eval()
+
+        embeddings = []
+        ids = []
+
+        with torch.no_grad():
+            for batch in loader:
+                input_ids = batch["input_ids"].long().to(self.device)
+                attention_mask = batch["attention_mask"].long().to(self.device)
+
+                token_types = batch.get("token_types")
+                if token_types is not None:
+                    token_types = token_types.long().to(self.device)
+
+                _, patient_embedding = self(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    token_types=token_types
+                )
+
+                embeddings.append(patient_embedding.cpu())
+
+                if "ids" in batch:
+                    ids.extend(batch["ids"])
+
+        embeddings = torch.cat(embeddings, dim=0).numpy()
+
+        return embeddings, ids
+
+    def predict_proba(self, loader):
         self.to(self.device)
+        self.eval()
 
-        all_probs = []
+        ids = []
+        probas = []
 
-        for batch in dataloader:
-            if len(batch) == 2:
-                ids, x = batch
-                token_types = None
+        with torch.no_grad():
+            for batch in loader:
+                input_ids = batch["input_ids"].long().to(self.device)
+                attention_mask = batch["attention_mask"].long().to(self.device)
 
-            elif len(batch) == 3:
-                ids, x, third = batch
+                token_types = batch.get("token_types")
+                if token_types is not None:
+                    token_types = token_types.long().to(self.device)
 
-                if third.ndim == 1:
-                    token_types = None
-                else:
-                    token_types = third
-
-            elif len(batch) == 4:
-                ids, x, token_types, y = batch
-
-            else:
-                raise ValueError(
-                    "Batch deve essere (id,x), (id,x,y), "
-                    "(id,x,token_types) o (id,x,token_types,y)"
+                logits, _ = self(
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                    token_types=token_types
                 )
 
-            x = x.long().to(self.device)
+                probs = torch.sigmoid(logits.view(-1))
 
-            if token_types is not None:
-                token_types = token_types.long().to(self.device)
+                probas.extend(probs.cpu().numpy())
 
-            logits, _ = self(x, token_types=token_types)
+                if "ids" in batch:
+                    ids.extend(batch["ids"])
 
-            if logits.shape[1] == 1:
-                prob_pos = torch.sigmoid(logits)
-                probs = torch.cat(
-                    [1 - prob_pos, prob_pos],
-                    dim=1
-                )
-            else:
-                probs = torch.softmax(logits, dim=1)
+        return np.array(probas), ids
 
-            all_probs.append(probs.cpu())
-
-        return torch.cat(all_probs, dim=0)
-
-    @torch.no_grad()
-    def predict(self, dataloader):
-        probs = self.predict_proba(dataloader)
-        preds = torch.argmax(probs, dim=1)
-        return preds, probs
-    
+    def predict(self, loader, threshold=0.5):
+        probas, ids = self.predict_proba(loader)
+        preds = (probas >= threshold).astype(int)
+        return preds, ids  
 #------------------------------------------------------------------------------------------------
 # BEHRT
 #------------------------------------------------------------------------------------------------
