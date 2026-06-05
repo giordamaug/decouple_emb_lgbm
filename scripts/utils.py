@@ -19,7 +19,8 @@ class Settings:
                  methods = ["LSTM"], 
                  evfields = [],
                  no_selection = False,
-                 spleen_flags = ['YES', 'NO'],
+                 spleen_flags = None,
+                 save_events=False,
                  selected_spleen_flags = ['YES'],
                  remove_events = [],
                  enable_plot = True, to_latex=True, 
@@ -49,15 +50,17 @@ class Settings:
         self.pathology_field=pathology_field
         self.events_field='events'
         self.is_splenectomized_field='is_splenectomized?'
+        self.save_events = save_events
 
         try:
             dataset = pd.read_json(self.datafile).set_index('id')
             self.dataset_orig = dataset
             self.dataset = self.dataset_orig.copy()
 
-            self.dataset = self.dataset[self.dataset[self.is_splenectomized_field].isin(self.selected_spleen_flags)]
-            if not self.noselection:
-                self.dataset = self.dataset[self.dataset[self.pathology_field].isin(self.pathologies.keys())]
+            if self.spleen_flags is not None:
+                self.dataset = self.dataset[self.dataset[self.is_splenectomized_field].isin(self.selected_spleen_flags)]
+                if not self.noselection:
+                    self.dataset = self.dataset[self.dataset[self.pathology_field].isin(self.pathologies.keys())]
             
             print(f"Loaded {len(self.dataset)} records from {self.datafile}")
             self.selected_patient_ids = self.dataset.index.values
