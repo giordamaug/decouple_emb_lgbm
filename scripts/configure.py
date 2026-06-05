@@ -1,6 +1,6 @@
-from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEREmbedder, TimeAwareLSTMEmbedder, DipoleEmbedder 
+from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEREmbedder, TimeAwareLSTMEmbedder, DipoleEmbedder, CEHRBERTembedder
 from .embedding import StaticEmbedder, RETAINembedder, DOMEEmbedder, BINARYEmbedder, GRUEmbedder, GRUEDembedder, Med2VecEmbedder
-from .classifiers import FlexLSTMclassifier, DipoleClassifier, BEHRTclassifier, GRUclassifier, GRUDclassifier
+from .classifiers import FlexLSTMclassifier, DipoleClassifier, BEHRTclassifier, GRUclassifier, GRUDclassifier, Med2Vecclassifier
 
 def configure(event_sequences, visit_sequences, labels, X_static, args):
     vocab = set()
@@ -69,6 +69,20 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
                 "enable_plot": args.enable_plot
             }
         },
+        "CEHRBERT" : 
+        {   "func": CEHRBERTembedder,
+            #"clf": BEHRTclassifier,
+            "kwargs": {
+                "sequences": event_sequences,
+                "labels": labels,
+                "word_to_idx": code2id,
+                "num_epochs": args.num_epochs,
+                "batch_size": args.batch_size,
+                "embed_size": args.embedding_dim,
+                "hidden_size": args.hidden_dim,
+                "enable_plot": args.enable_plot
+            }
+        },
         "BEHRT" : 
         {   "func": BEHRTembedder,
             "clf": BEHRTclassifier,
@@ -112,7 +126,8 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
         },
         "M2V" : 
         {   "func": Med2VecEmbedder,
-            "kwargs": {
+            "clf": Med2Vecclassifier,
+                "kwargs": {
                 "sequences": event_sequences,
                 "labels": labels,
                 "word_to_idx": word_to_idx,
