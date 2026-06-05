@@ -256,58 +256,90 @@ def RETAINembedder(sequences,
     test_df.columns = [f"retain_{i}" for i in range(test_df.shape[1])]
     return train_df, test_df
 
-def CEHRBERTembedder(sequences, 
-                  labels,
-                  word_to_idx=None, 
-                  train_idx=None, 
-                  valid_idx=None,
-                  num_epochs=10,
-                  batch_size=32,
-                  embed_size=64,
-                  hidden_size=128,
-                  enable_plot=False,
-                  frame_tqdm=None,
-                  frame_plot=None,
-                 ):
+def CEHRBERTembedder(
+    sequences,
+    labels,
+    tmapper,
+    word_to_idx=None,
+    train_idx=None,
+    valid_idx=None,
+    event_type_dict=None,
+    with_validation=True,
+    num_epochs=10,
+    batch_size=32,
+    embed_size=64,
+    hidden_size=128,
+    num_heads=4,
+    num_layers=2,
+    max_len=512,
+    pooling="attention",
+    use_token_type=True,
+    loss_type="focal",
+    alpha=0.85,
+    gamma=2.0,
+    patience=5,
+    lr=1e-4,
+    weight_decay=1e-5,
+    random_state=42,
+    encoder_val_size=0.2,
+    enable_plot=False,
+    frame_tqdm=None,
+    frame_plot=None,
+    plotsize=(6, 4),
+    name="CEHRBERT"
+):
     train_visists = {id:v for id,v in sequences.items() if id in train_idx}
     test_visists = {id:v for id,v in sequences.items() if id in valid_idx}
+    full_train_event_type_dict = None #{id: [tmapper[x[2]] for x in events] for id,events in sequences.items() if id in train_idx}
+    full_train_dataset = CEHRBERTDataset(train_visists, labels_dict=labels,event_type_dict=full_train_event_type_dict,max_len=max_len, word_to_idx=word_to_idx)
+    full_train_dataloader = DataLoader(dataset=full_train_dataset, batch_size=batch_size, collate_fn=cehrbert_collate_fn)
 
-    train_dataset = CEHRBERTDataset(train_visists, labels_dict=labels, event_type_dict=None)
-    train_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size)
-    test_dataset = CEHRBERTDataset(test_visists, event_type_dict=None)
-    test_dataloader = DataLoader(dataset=test_dataset, batch_size=batch_size)
+    train_idx = list(train_idx)
+    valid_idx = list(valid_idx)
 
-    model = CEHRBERTModel(vocab_size=len(word_to_idx),
-                            embed_dim=embed_size,
-                            hidden_dim=hidden_size,
-                            num_heads=4,
-                            num_layers=2,
-                            max_len=512,
-                            pooling="attention",
-                            use_token_type=False,
-                            name="CEHRBERT"
-                        )
-    
-    model.train_model(train_dataloader,
-                        val_loader=None,
-                        num_epochs=num_epochs,
-                        lr=1e-4,
-                        loss_type="focal",
-                        focal_alpha=0.85,
-                        focal_gamma=2.0,
-                        patience=5,
-                        enable_plot=enable_plot,
-                        frame_tqdm=frame_tqdm,
-                        frame_plot=frame_plot
-                    )
-    
-    train_patient_embeddings = model.get_embeddings(train_dataloader)
-    test_patient_embeddings = model.get_embeddings(test_dataloader)
-    train_df = pd.DataFrame(train_patient_embeddings, index=train_idx)
-    test_df = pd.DataFrame(test_patient_embeddings, index=valid_idx)
-    train_df.columns = [f"cehrbert_{i}" for i in range(train_df.shape[1])]
-    test_df.columns = [f"cehrbert_{i}" for i in range(test_df.shape[1])]
-    return train_df, test_df
+    # split interno SOLO per addestrare/validare l'encoder
+    y_train_split = [labels[i] for i in train_idx]
+    encoder_train_idx, encoder_val_idx = train_test_split(
+        train_idx,
+        test_size=encoder_val_size,
+        stratify=y_train_split,
+        random_state=random_state
+    )
+
+    model = CEHRBERTModel(vocab_size=len(word_to_idx),embed_dim=embed_size, hidden_dim=hidden_size,
+                          num_heads=num_heads,num_layers=num_layers,max_len=max_len,pooling=pooling,
+                          use_token_type=use_token_type,name=name)
+    if with_validation:
+        train_visits = {id:v for id,v in sequences.items() if id in encoder_train_idx}
+        val_visits = {id:v for id,v in sequences.items() if id in encoder_val_idx}
+        train_dataset = CEHRBERTDataset(train_visits, labels_dict=labels,event_type_dict=event_type_dict,max_len=max_len, word_to_idx=word_to_idx)
+        train_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size, collate_fn=cehrbert_collate_fn)
+        val_dataset = CEHRBERTDataset(val_visits, labels_dict=labels,event_type_dict=event_type_dict,max_len=max_len, word_to_idx=word_to_idx)
+        val_dataloader = DataLoader(dataset=val_dataset, batch_size=batch_size, collate_fn=cehrbert_collate_fn) 
+    else:
+        #train_dataset = CEHRBERTDataset(train_visists, labels_dict=labels,event_type_dict=event_type_dict,max_len=max_len, word_to_idx=word_to_idx)
+        #train_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size, collate_fn=cehrbert_collate_fn)
+        train_dataloader = full_train_dataloader
+        val_dataloader = None
+
+    test_event_type_dict = None #{id: [tmapper[x[2]] for x in events] for id,events in sequences.items() if id in valid_idx}
+    test_dataset = CEHRBERTDataset(test_visists, event_type_dict=test_event_type_dict,max_len=max_len, word_to_idx=word_to_idx)
+    test_dataloader = DataLoader(dataset=test_dataset, batch_size=batch_size, collate_fn=cehrbert_collate_fn)
+
+    model.train_model(train_dataloader,val_loader=val_dataloader,num_epochs=num_epochs, lr=lr,
+                    loss_type=loss_type,alpha=alpha,gamma=gamma,weight_decay=weight_decay,
+                    enable_plot=enable_plot,frame_tqdm=frame_tqdm,frame_plot=frame_plot, plotsize=plotsize)
+
+    train_embeddings, train_ids = model.get_embeddings(full_train_dataloader)
+    valid_embeddings, valid_ids = model.get_embeddings(test_dataloader)
+
+    train_df = pd.DataFrame(train_embeddings, index=train_ids)
+    valid_df = pd.DataFrame(valid_embeddings, index=valid_ids)
+
+    train_df.columns = [f"{name}_{i}" for i in range(train_df.shape[1])]
+    valid_df.columns = [f"{name}_{i}" for i in range(valid_df.shape[1])]
+
+    return train_df, valid_df#, model, history
 
 def BEHRTembedder(sequences, 
                   labels,
