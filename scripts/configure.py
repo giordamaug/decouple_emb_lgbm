@@ -2,11 +2,13 @@ from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEREmbedder, TimeAwa
 from .embedding import StaticEmbedder, RETAINembedder, DOMEEmbedder, BINARYEmbedder, GRUEmbedder, GRUEDembedder, Med2VecEmbedder
 from .classifiers import FlexLSTMclassifier, DipoleClassifier, BEHRTclassifier, GRUclassifier, GRUDclassifier, Med2Vecclassifier
 
-def configure(event_sequences, visit_sequences, labels, X_static, args):
+def configure(event_sequences, visit_sequences, event_sequences_type, labels, X_static, args):
     vocab = set()
     for patient_events in event_sequences.values():
         for event,_ in patient_events:
             vocab.update([event] if isinstance(event, str) else event)
+    tmapper = {"comorbidity": 1, "infection": 2, "thrombosys": 3, "surgical_operation": 4, 
+           "surgery": 4, "vaccination": 5, "therapy": 6, "platelet_change": 7, "bmi_change": 8, "followup": 9, "drug": 10} 
     word_to_idx = {word: idx for idx, word in enumerate(sorted(vocab))}  # for LSTM, RETAIN, etc
     code2id = {"[PAD]": 0, "[CLS]": 1, "[SEP]": 2}
     idx = 3
@@ -73,8 +75,10 @@ def configure(event_sequences, visit_sequences, labels, X_static, args):
         {   "func": CEHRBERTembedder,
             #"clf": BEHRTclassifier,
             "kwargs": {
-                "sequences": event_sequences,
+                "sequences": event_sequences_type,
                 "labels": labels,
+                "tmapper": tmapper,
+                "with_validation": True,
                 "word_to_idx": code2id,
                 "num_epochs": args.num_epochs,
                 "batch_size": args.batch_size,
