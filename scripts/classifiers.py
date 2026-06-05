@@ -4,7 +4,7 @@ from .models import FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
 from .models import BEHRTDataset, BEHRTModel
 from .models import RETAINModel, RETAINDataset, visit_collate_fn
 from .models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
-from .models import DipoleDataset, DipoleModel, dipole_collate
+from .models import DipoleDataset, DipoleModel, dipole_collate, Med2VecDataset, Med2VecModel, med2vec_collate
 from collections import Counter
 import torch
 from torch.utils.data import DataLoader
@@ -30,7 +30,8 @@ def FlexLSTMclassifier(sequences,
                  pooling=False,
                  use_padding=False,
                  bidirectional=False,
-                 use_attention=False
+                 use_attention=False,
+                 name="FlexLSTM"
                  ):
 
     y_train = {id: val for (id,val) in labels.items() if id in train_idx} 
@@ -47,10 +48,30 @@ def FlexLSTMclassifier(sequences,
                               pooling=pooling,
                               use_padding=use_padding, 
                               bidirectional=bidirectional,
-                              use_attention=use_attention)
+                              use_attention=use_attention, name=name)
     model.train_model(train_loader, val_loader=None, num_epochs=num_epochs, enable_plot=enable_plot, 
                       frame_tqdm=frame_tqdm, frame_plot=frame_plot, plotsize=plotsize)
     y_pred, y_prob = model.predict(test_loader)
+    return y_pred, y_prob
+
+def Med2Vecclassifier(sequences, word_to_idx, train_idx, valid_idx,
+                          labels, embed_size=64, hidden_size=64, lambda_visit=0.1,
+                          batch_size=32, num_epochs=10, enable_plot=False,
+                          frame_tqdm=None, frame_plot=None, thresh=0.3):
+
+
+    train_sequences = {pid: sequences[pid] for pid in train_idx}
+    valid_sequences = {pid: sequences[pid] for pid in valid_idx}
+
+    train_ds = Med2VecDataset(train_sequences, labels, word_to_idx)
+    valid_ds = Med2VecDataset(valid_sequences, labels, word_to_idx)
+
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
+    valid_loader = torch.utils.data.DataLoader(valid_ds, batch_size=batch_size, shuffle=False,collate_fn=med2vec_collate)
+    model = Med2VecModel(vocab_size=len(word_to_idx),embed_dim=embed_size, visit_dim=64)
+    model.train_model(train_loader, val_loader=None, num_epochs=num_epochs, lambda_visit=lambda_visit, enable_plot=enable_plot, 
+                      frame_tqdm=frame_tqdm, frame_plot=frame_plot, plotsize=plotsize)
+    y_pred, y_prob = model.predict(valid_loader, threshold=thresh)
     return y_pred, y_prob
 
 def RETAINclassifier(sequences, 
