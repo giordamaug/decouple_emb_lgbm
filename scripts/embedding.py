@@ -8,6 +8,7 @@ from .models import DipoleDataset, DipoleModel, dipole_collate
 from .models import TimeAwareLSTMModel, timeaware_collate_fn, TimeAwareLSTMDataset
 from .models import DOME, co_occurrence_infectious_window,compute_directional_ppmi, riskmatrix_loop_fb_dome
 from .models import Med2VecDataset, Med2VecModel, med2vec_collate
+from .models import CEHRBERTModel,CEHRBERTDataset, cehrbert_collate_fn
 from collections import Counter
 import torch
 from torch.utils.data import DataLoader
@@ -18,6 +19,159 @@ from IPython.display import clear_output
 
 plotsize = (4,3)
 
+from sklearn.model_selection import train_test_split
+from torch.utils.data import DataLoader
+import pandas as pd
+
+
+def FlexLSTMembeddeWithValidationr(
+    sequences,
+    labels,
+    word_to_idx=None,
+    train_idx=None,
+    valid_idx=None,
+    num_epochs=50,
+    batch_size=32,
+    embed_size=64,
+    hidden_size=128,
+    enable_plot=False,
+    frame_tqdm=None,
+    frame_plot=None,
+    pooling=False,
+    use_padding=False,
+    bidirectional=False,
+    use_attention=False,
+    name="FlexLSTM",
+    lstm_val_size=0.2,
+    random_state=42,
+):
+    """
+    train_idx: pazienti usati per addestrare l'embedder
+    valid_idx: pazienti esterni, usati solo per estrarre embedding dopo il training
+    """
+
+    # Split interno SOLO dentro il train
+    y_for_split = [labels[i] for i in train_idx]
+
+    lstm_train_idx, lstm_val_idx = train_test_split(
+        list(train_idx),
+        test_size=lstm_val_size,
+        stratify=y_for_split,
+        random_state=random_state,
+    )
+
+    # Labels
+    y_lstm_train = {i: labels[i] for i in lstm_train_idx}
+    y_lstm_val = {i: labels[i] for i in lstm_val_idx}
+    y_valid = {i: labels[i] for i in valid_idx}
+
+    # Sequenze indicizzate
+    lstm_train_sentences = {
+        i: [word_to_idx[word] for word, _ in sequences[i] if word in word_to_idx]
+        for i in lstm_train_idx
+    }
+
+    lstm_val_sentences = {
+        i: [word_to_idx[word] for word, _ in sequences[i] if word in word_to_idx]
+        for i in lstm_val_idx
+    }
+
+    valid_sentences = {
+        i: [word_to_idx[word] for word, _ in sequences[i] if word in word_to_idx]
+        for i in valid_idx
+    }
+
+    # Dataset
+    lstm_train_dataset = LSTMDataset(
+        lstm_train_sentences,
+        labels_dict=y_lstm_train
+    )
+
+    lstm_val_dataset = LSTMDataset(
+        lstm_val_sentences,
+        labels_dict=y_lstm_val
+    )
+
+    valid_dataset = LSTMDataset(
+        valid_sentences,
+        labels_dict=y_valid
+    )
+
+    # DataLoader
+    lstm_train_loader = DataLoader(
+        lstm_train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        collate_fn=lstm_collate_fn
+    )
+
+    lstm_val_loader = DataLoader(
+        lstm_val_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        collate_fn=lstm_collate_fn
+    )
+
+    valid_loader = DataLoader(
+        valid_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        collate_fn=lstm_collate_fn
+    )
+
+    # Modello
+    model = FlexibleLSTMModel(
+        len(word_to_idx),
+        embed_dim=embed_size,
+        hidden_dim=hidden_size,
+        pooling=pooling,
+        use_padding=use_padding,
+        bidirectional=bidirectional,
+        use_attention=use_attention,
+        name=name
+    )
+
+    # Training con validation interna
+    model.train_model(
+        lstm_train_loader,
+        val_loader=lstm_val_loader,
+        num_epochs=num_epochs,
+        enable_plot=enable_plot,
+        frame_tqdm=frame_tqdm,
+        frame_plot=frame_plot
+    )
+    # Ora estrai embedding su TUTTO il train esterno
+    full_train_labels = {i: labels[i] for i in train_idx}
+
+    full_train_sentences = {
+        i: [word_to_idx[word] for word, _ in sequences[i] if word in word_to_idx]
+        for i in train_idx
+    }
+
+    full_train_dataset = LSTMDataset(
+        full_train_sentences,
+        labels_dict=full_train_labels
+    )
+
+    full_train_loader = DataLoader(
+        full_train_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        collate_fn=lstm_collate_fn
+    )
+
+    train_patient_embeddings, train_ids = model.get_embeddings(full_train_loader)
+    valid_patient_embeddings, valid_ids = model.get_embeddings(valid_loader)
+
+    # DataFrame
+    train_df = pd.DataFrame(train_patient_embeddings, index=train_ids)
+    valid_df = pd.DataFrame(valid_patient_embeddings, index=valid_ids)
+
+    train_df.columns = [f"{name}_{i}" for i in range(train_df.shape[1])]
+    valid_df.columns = [f"{name}_{i}" for i in range(valid_df.shape[1])]
+
+    return train_df, valid_df
+    
 def FlexLSTMembedder(sequences,
                  labels, 
                  word_to_idx=None, 
@@ -39,6 +193,7 @@ def FlexLSTMembedder(sequences,
 
     y_train = {id: val for (id,val) in labels.items() if id in train_idx} 
     y_valid = {id: val for (id,val) in labels.items() if id in valid_idx}
+    
     train_sentences = {id: [word_to_idx[word] for word, _ in sequences[id]] for id in train_idx}
     train_dataset = LSTMDataset(train_sentences, labels_dict=y_train)
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False, collate_fn=lstm_collate_fn)
@@ -101,6 +256,59 @@ def RETAINembedder(sequences,
     test_df.columns = [f"retain_{i}" for i in range(test_df.shape[1])]
     return train_df, test_df
 
+def CEHRBERTembedder(sequences, 
+                  labels,
+                  word_to_idx=None, 
+                  train_idx=None, 
+                  valid_idx=None,
+                  num_epochs=10,
+                  batch_size=32,
+                  embed_size=64,
+                  hidden_size=128,
+                  enable_plot=False,
+                  frame_tqdm=None,
+                  frame_plot=None,
+                 ):
+    train_visists = {id:v for id,v in sequences.items() if id in train_idx}
+    test_visists = {id:v for id,v in sequences.items() if id in valid_idx}
+
+    train_dataset = CEHRBERTDataset(train_visists, labels_dict=labels, event_type_dict=None)
+    train_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size)
+    test_dataset = CEHRBERTDataset(test_visists, event_type_dict=None)
+    test_dataloader = DataLoader(dataset=test_dataset, batch_size=batch_size)
+
+    model = CEHRBERTModel(vocab_size=len(word_to_idx),
+                            embed_dim=embed_size,
+                            hidden_dim=hidden_size,
+                            num_heads=4,
+                            num_layers=2,
+                            max_len=512,
+                            pooling="attention",
+                            use_token_type=False,
+                            name="CEHRBERT"
+                        )
+    
+    model.train_model(train_dataloader,
+                        val_loader=None,
+                        num_epochs=num_epochs,
+                        lr=1e-4,
+                        loss_type="focal",
+                        focal_alpha=0.85,
+                        focal_gamma=2.0,
+                        patience=5,
+                        enable_plot=enable_plot,
+                        frame_tqdm=frame_tqdm,
+                        frame_plot=frame_plot
+                    )
+    
+    train_patient_embeddings = model.get_embeddings(train_dataloader)
+    test_patient_embeddings = model.get_embeddings(test_dataloader)
+    train_df = pd.DataFrame(train_patient_embeddings, index=train_idx)
+    test_df = pd.DataFrame(test_patient_embeddings, index=valid_idx)
+    train_df.columns = [f"cehrbert_{i}" for i in range(train_df.shape[1])]
+    test_df.columns = [f"cehrbert_{i}" for i in range(test_df.shape[1])]
+    return train_df, test_df
+
 def BEHRTembedder(sequences, 
                   labels,
                   word_to_idx=None, 
@@ -147,12 +355,12 @@ def DOMEEmbedder(sequences,
     events_fold_train = {id: sequences[int(id)] for id in train_idx if int(id) in sequences}
     with frame_tqdm:
         frame_tqdm.clear_output(wait=True)
-        cooc_prior, vocabular = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='prior')
-        cooc_post, _ = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='posterior')#, exclude_from_rows=set(targets))
+        cooc_prior, vocabular = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='prior') #, exclude_from_rows=set(targets))
+        cooc_post, _ = co_occurrence_infectious_window(events_fold_train, targets, df, months_window=5, direction='posterior') #, exclude_from_rows=set(targets))
     with frame_plot:
         frame_plot.clear_output(wait=True)
-        print("✅ Vocabular (first 10 words):", vocabular[:10])
-        print("📊 Co-occurrence matrix shape:", df.shape)
+        print(f"✅ Vocabulary with {len(vocabular)} words (first 10 words):", vocabular[:10])
+        print("📊 Co-occurrence matrix shape:", cooc_prior.shape, cooc_post.shape)
     
     embed_attributes = [w for w in sorted(vocabular) if w not in targets]
 
@@ -181,6 +389,8 @@ def DOMEEmbedder(sequences,
     Xrisk.index = Xrisk.index.astype(int)
     Xembed_dome = Xrisk.loc[Xrisk.index.intersection([int(id) for id in all_idx])]
     Xembed_dome.columns = [f"{col}_embed" for col in Xembed_dome.columns]
+    with frame_plot:
+        print(f"✅ Embedding size {len(Xembed_dome.columns)}")
 
     train_df = pd.DataFrame(Xembed_dome.loc[train_idx], index=train_idx)
     test_df = pd.DataFrame(Xembed_dome.loc[valid_idx], index=valid_idx)
