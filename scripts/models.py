@@ -19,7 +19,47 @@ from sklearn.metrics import (
     matthews_corrcoef, confusion_matrix, accuracy_score, roc_auc_score,
     precision_score, recall_score, f1_score
 )
+from contextlib import nullcontext
 
+class BinaryFocalLoss(nn.Module):
+    def __init__(self, alpha=0.75, gamma=2.0, reduction="mean"):
+        super().__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets):
+        """
+        logits: output grezzo del modello, shape [batch] o [batch, 1]
+        targets: 0/1, shape [batch] o [batch, 1]
+        """
+
+        logits = logits.view(-1)
+        targets = targets.float().view(-1)
+
+        bce_loss = F.binary_cross_entropy_with_logits(
+            logits,
+            targets,
+            reduction="none"
+        )
+
+        probas = torch.sigmoid(logits)
+
+        p_t = probas * targets + (1 - probas) * (1 - targets)
+
+        alpha_t = self.alpha * targets + (1 - self.alpha) * (1 - targets)
+
+        focal_factor = (1 - p_t) ** self.gamma
+
+        loss = alpha_t * focal_factor * bce_loss
+
+        if self.reduction == "mean":
+            return loss.mean()
+        elif self.reduction == "sum":
+            return loss.sum()
+        else:
+            return loss
+            
 #------------------------------------------------------------------------------------------------
 # Plot function
 #------------------------------------------------------------------------------------------------
@@ -50,17 +90,17 @@ def riskmatrix_loop_fb_dome(events, attributes, targets, emb1, emb2):
     attributes = [a.lower() for a in attributes]
     targets = [t.lower() for t in targets]
     zero_data = np.ones((len(events), len(attributes)))
-    X_df = pd.DataFrame(zero_data, columns=attributes, index=events.keys())
+    X_df = pd.DataFrame(zero_data, columns=attributes, dtype=float, index=events.keys())
 
     Wmul = emb1.T@emb2
     for id, dcount in tqdm(events.items(), desc="Risk calculating"):
         for concept in dcount.keys():
             concept_l = concept.lower()
             if concept_l in attributes:
-                risk_sum = 0
+                risk_sum = 0.0
                 for disease in targets:
                         w_val = Wmul[concept_l][disease]
-                        risk_sum += 1 / (1 + math.exp(w_val))
+                        risk_sum += 1 / float(1 + math.exp(w_val))
                 X_df.loc[id, concept_l] += dcount[concept] * risk_sum
     return X_df
 
@@ -476,18 +516,6 @@ class FlexibleLSTMModel(nn.Module):
                     feat = torch.cat((h_forward, h_backward), dim=1)
                 else:
                     feat = hn.squeeze(0)
-            #if self.pooling:
-            #    mask = (x != 0).unsqueeze(-1)
-            #    output_masked = output * mask
-            #    lengths = (x != 0).sum(dim=1).unsqueeze(1)
-            #    feat = output_masked.sum(dim=1) / lengths
-            #else:
-            #    if self.bidirectional:
-            #        h_forward = hn[0]
-            #        h_backward = hn[1]
-            #        feat = torch.cat((h_forward, h_backward), dim=1)
-            #    else:
-            #        feat = hn.squeeze(0)
         logits = self.classifier(feat)
         return logits, feat
 
@@ -504,6 +532,7 @@ class FlexibleLSTMModel(nn.Module):
         self.to(self.device)
         optimizer = torch.optim.Adam(self.parameters(), lr=lr)
         criterion = nn.BCEWithLogitsLoss()
+        #criterion = BinaryFocalLoss(alpha=0.75, gamma=2.0)
         train_losses, val_losses, val_aucs = [], [], []
         with frame_tqdm:
             frame_tqdm.clear_output(wait=True)
@@ -1001,6 +1030,620 @@ class RETAINModel(nn.Module):
         #all_embeds = torch.cat(all_embeds, dim=0).numpy()
         return all_embeds, np.array(all_ids)
         
+#------------------------------------------------------------------------------------------------
+# CEHR-BERT
+#------------------------------------------------------------------------------------------------
+
+def cehrbert_collate_fn(batch, pad_idx=0, max_len=512):
+    ids = [item["id"] for item in batch]
+    sequences = [item["input_ids"][:max_len] for item in batch]
+
+    max_batch_len = max(len(seq) for seq in sequences)
+
+    input_ids = []
+
+    for seq in sequences:
+        pad_len = max_batch_len - len(seq)
+        input_ids.append(seq + [pad_idx] * pad_len)
+
+    x = torch.tensor(input_ids, dtype=torch.long)
+
+    has_types = "token_types" in batch[0]
+    has_labels = "label" in batch[0]
+
+    token_types_tensor = None
+
+    if has_types:
+        token_types = [item["token_types"][:max_len] for item in batch]
+        padded_types = []
+
+        for tt in token_types:
+            pad_len = max_batch_len - len(tt)
+            padded_types.append(tt + [0] * pad_len)
+
+        token_types_tensor = torch.tensor(padded_types, dtype=torch.long)
+
+    if has_types and has_labels:
+        y = torch.tensor([item["label"] for item in batch], dtype=torch.float)
+        return ids, x, token_types_tensor, y
+
+    if has_types and not has_labels:
+        return ids, x, token_types_tensor
+
+    if not has_types and has_labels:
+        y = torch.tensor([item["label"] for item in batch], dtype=torch.float)
+        return ids, x, y
+
+    return ids, x
+
+class CEHRBERTDataset(torch.utils.data.Dataset):
+    def __init__(self, sequences, labels_dict=None, event_type_dict=None):
+        self.ids = list(sequences.keys())
+        self.sequences = sequences
+        self.labels_dict = labels_dict
+        self.event_type_dict = event_type_dict
+
+    def __len__(self):
+        return len(self.ids)
+
+    def __getitem__(self, idx):
+        patient_id = self.ids[idx]
+        seq = self.sequences[patient_id]
+
+        if len(seq) > 0 and isinstance(seq[0], tuple):
+            input_ids = [x[0] for x in seq]
+        else:
+            input_ids = seq
+
+        item = {
+            "id": patient_id,
+            "input_ids": input_ids
+        }
+
+        if self.labels_dict is not None:
+            item["label"] = self.labels_dict[patient_id]
+
+        if self.event_type_dict is not None:
+            item["token_types"] = self.event_type_dict[patient_id]
+
+        return item
+
+import copy
+import math
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class BinaryFocalLoss(nn.Module):
+    def __init__(self, alpha=0.75, gamma=2.0, reduction="mean"):
+        super().__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets):
+        logits = logits.view(-1)
+        targets = targets.float().view(-1)
+
+        bce = F.binary_cross_entropy_with_logits(
+            logits, targets, reduction="none"
+        )
+
+        probs = torch.sigmoid(logits)
+        p_t = probs * targets + (1 - probs) * (1 - targets)
+        alpha_t = self.alpha * targets + (1 - self.alpha) * (1 - targets)
+
+        loss = alpha_t * ((1 - p_t) ** self.gamma) * bce
+
+        if self.reduction == "mean":
+            return loss.mean()
+        if self.reduction == "sum":
+            return loss.sum()
+        return loss
+
+
+import copy
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+from tqdm.auto import tqdm
+from sklearn.metrics import roc_auc_score
+
+
+class BinaryFocalLoss(nn.Module):
+    def __init__(self, alpha=0.75, gamma=2.0, reduction="mean"):
+        super().__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets):
+        logits = logits.view(-1)
+        targets = targets.float().view(-1)
+
+        bce = F.binary_cross_entropy_with_logits(
+            logits,
+            targets,
+            reduction="none"
+        )
+
+        probs = torch.sigmoid(logits)
+        p_t = probs * targets + (1 - probs) * (1 - targets)
+        alpha_t = self.alpha * targets + (1 - self.alpha) * (1 - targets)
+
+        loss = alpha_t * ((1 - p_t) ** self.gamma) * bce
+
+        if self.reduction == "mean":
+            return loss.mean()
+        if self.reduction == "sum":
+            return loss.sum()
+
+        return loss
+
+
+class CEHRBERTModel(nn.Module):
+
+    def __init__(
+        self,
+        vocab_size,
+        embed_dim=128,
+        hidden_dim=128,
+        num_heads=4,
+        num_layers=2,
+        max_len=512,
+        dropout=0.1,
+        pooling="cls",          # "cls", "mean", "attention"
+        use_token_type=False,
+        n_event_types=4,
+        name="CEHRBERT"
+    ):
+        super().__init__()
+
+        self.name = name
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        self.vocab_size = vocab_size
+        self.embed_dim = embed_dim
+        self.hidden_dim = hidden_dim
+        self.num_heads = num_heads
+        self.num_layers = num_layers
+        self.max_len = max_len
+        self.pooling = pooling
+        self.use_token_type = use_token_type
+
+        self.token_embedding = nn.Embedding(
+            vocab_size,
+            embed_dim,
+            padding_idx=0
+        )
+
+        self.position_embedding = nn.Embedding(
+            max_len,
+            embed_dim
+        )
+
+        if use_token_type:
+            self.type_embedding = nn.Embedding(
+                n_event_types,
+                embed_dim,
+                padding_idx=0
+            )
+        else:
+            self.type_embedding = None
+
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=embed_dim,
+            nhead=num_heads,
+            dim_feedforward=hidden_dim * 4,
+            dropout=dropout,
+            batch_first=True,
+            activation="gelu"
+        )
+
+        self.encoder = nn.TransformerEncoder(
+            encoder_layer,
+            num_layers=num_layers
+        )
+
+        if pooling == "attention":
+            self.attention = nn.Linear(embed_dim, 1)
+
+        self.dropout = nn.Dropout(dropout)
+        self.classifier = nn.Linear(embed_dim, 1)
+
+    def forward(self, x, token_types=None):
+        """
+        x: LongTensor [batch, seq_len]
+        token_types: opzionale LongTensor [batch, seq_len]
+        """
+
+        x = x[:, :self.max_len]
+
+        if token_types is not None:
+            token_types = token_types[:, :self.max_len]
+
+        batch_size, seq_len = x.shape
+        attention_mask = (x != 0)
+
+        positions = torch.arange(seq_len, device=x.device)
+        positions = positions.unsqueeze(0).expand(batch_size, seq_len)
+
+        h = self.token_embedding(x)
+        h = h + self.position_embedding(positions)
+
+        if self.use_token_type and token_types is not None:
+            h = h + self.type_embedding(token_types)
+
+        key_padding_mask = ~attention_mask
+
+        encoded = self.encoder(
+            h,
+            src_key_padding_mask=key_padding_mask
+        )
+
+        feat = self._pool(encoded, attention_mask)
+
+        logits = self.classifier(self.dropout(feat))
+
+        return logits, feat
+
+    def _pool(self, encoded, attention_mask):
+        if self.pooling == "cls":
+            return encoded[:, 0, :]
+
+        if self.pooling == "mean":
+            mask = attention_mask.unsqueeze(-1).float()
+            return (encoded * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1e-8)
+
+        if self.pooling == "attention":
+            scores = self.attention(encoded).squeeze(-1)
+            scores = scores.masked_fill(
+                ~attention_mask,
+                torch.finfo(scores.dtype).min
+            )
+            weights = torch.softmax(scores, dim=1)
+            return torch.sum(encoded * weights.unsqueeze(-1), dim=1)
+
+        raise ValueError(f"pooling non valido: {self.pooling}")
+
+    def _unpack_batch(self, batch, with_y=True):
+        """
+        Supporta batch:
+        - (ids, x)
+        - (ids, x, y)
+        - (ids, x, token_types)
+        - (ids, x, token_types, y)
+        """
+
+        if len(batch) == 2:
+            ids, x = batch
+            token_types = None
+            y = None
+
+        elif len(batch) == 3:
+            ids, x, third = batch
+
+            if with_y:
+                token_types = None
+                y = third
+            else:
+                token_types = third
+                y = None
+
+        elif len(batch) == 4:
+            ids, x, token_types, y = batch
+
+        else:
+            raise ValueError(
+                "Batch deve essere (id,x), (id,x,y), "
+                "(id,x,token_types) o (id,x,token_types,y)"
+            )
+
+        x = x.long().to(self.device)
+
+        if token_types is not None:
+            token_types = token_types.long().to(self.device)
+
+        if y is not None:
+            y = y.float().unsqueeze(1).to(self.device)
+
+        return ids, x, token_types, y
+
+    def train_model(
+        self,
+        train_loader,
+        val_loader=None,
+        num_epochs=10,
+        lr=1e-4,
+        weight_decay=1e-5,
+        loss_type="bce",        # "bce" oppure "focal"
+        focal_alpha=0.75,
+        focal_gamma=2.0,
+        enable_plot=False,
+        frame_tqdm=None,
+        frame_plot=None,
+        plotsize=(4, 5),
+        patience=None,
+        restore_best=True
+    ):
+
+        self.to(self.device)
+
+        optimizer = torch.optim.AdamW(
+            self.parameters(),
+            lr=lr,
+            weight_decay=weight_decay
+        )
+
+        if loss_type == "focal":
+            criterion = BinaryFocalLoss(
+                alpha=focal_alpha,
+                gamma=focal_gamma
+            )
+        else:
+            criterion = nn.BCEWithLogitsLoss()
+
+        train_losses, val_losses, val_aucs = [], [], []
+
+        best_state = None
+        best_val_loss = float("inf")
+        bad_epochs = 0
+
+        pbar_context = frame_tqdm if frame_tqdm is not None else nullcontext()
+        plot_context = frame_plot if frame_plot is not None else nullcontext()
+
+        with pbar_context:
+            if frame_tqdm is not None:
+                frame_tqdm.clear_output(wait=True)
+
+            pbar = tqdm(
+                range(num_epochs),
+                total=num_epochs,
+                desc=f"Training [{self.name}]"
+            )
+
+            for epoch in pbar:
+                self.train()
+                total_loss = 0.0
+
+                for batch in train_loader:
+                    optimizer.zero_grad()
+
+                    ids, x, token_types, y = self._unpack_batch(
+                        batch,
+                        with_y=True
+                    )
+
+                    if y is None:
+                        continue
+
+                    logits, _ = self(x, token_types=token_types)
+
+                    loss = criterion(logits, y)
+                    loss.backward()
+
+                    torch.nn.utils.clip_grad_norm_(
+                        self.parameters(),
+                        max_norm=1.0
+                    )
+
+                    optimizer.step()
+
+                    total_loss += loss.item()
+
+                avg_train_loss = (
+                    total_loss / len(train_loader)
+                    if total_loss > 0
+                    else 0
+                )
+
+                train_losses.append(avg_train_loss)
+
+                if val_loader is not None:
+                    val_loss, auc = self.evaluate(
+                        val_loader,
+                        loss_type=loss_type,
+                        focal_alpha=focal_alpha,
+                        focal_gamma=focal_gamma
+                    )
+
+                    val_losses.append(val_loss)
+                    val_aucs.append(auc)
+
+                    if val_loss < best_val_loss:
+                        best_val_loss = val_loss
+                        best_state = copy.deepcopy(self.state_dict())
+                        bad_epochs = 0
+                    else:
+                        bad_epochs += 1
+
+                    pbar.set_postfix({
+                        "Train Loss": round(avg_train_loss, 3),
+                        "Val Loss": round(val_loss, 3),
+                        "AUC": round(auc, 3)
+                    })
+
+                    if patience is not None and bad_epochs >= patience:
+                        pbar.write(
+                            f"[{self.name}] Early stopping at epoch {epoch + 1}"
+                        )
+                        break
+
+                else:
+                    pbar.set_postfix({
+                        "Train Loss": round(avg_train_loss, 3)
+                    })
+
+                with plot_context:
+                    if enable_plot:
+                        plot_foo(
+                            self.name,
+                            train_losses,
+                            val_losses,
+                            size=plotsize
+                        )
+
+        if restore_best and best_state is not None:
+            self.load_state_dict(best_state)
+
+        return train_losses, val_losses
+
+    @torch.no_grad()
+    def evaluate(
+        self,
+        dataloader,
+        loss_type="bce",
+        focal_alpha=0.75,
+        focal_gamma=2.0
+    ):
+        self.eval()
+
+        if loss_type == "focal":
+            criterion = BinaryFocalLoss(
+                alpha=focal_alpha,
+                gamma=focal_gamma
+            )
+        else:
+            criterion = nn.BCEWithLogitsLoss()
+
+        total_loss = 0.0
+        preds, trues = [], []
+
+        for batch in dataloader:
+            ids, x, token_types, y = self._unpack_batch(
+                batch,
+                with_y=True
+            )
+
+            logits, _ = self(x, token_types=token_types)
+
+            if y is not None:
+                loss = criterion(logits, y)
+                total_loss += loss.item()
+
+                probs = torch.sigmoid(logits).cpu().numpy()
+                preds.extend(probs.ravel())
+                trues.extend(y.cpu().numpy().ravel())
+
+        avg_loss = (
+            total_loss / len(dataloader)
+            if total_loss > 0
+            else 0
+        )
+
+        try:
+            auc = roc_auc_score(trues, preds) if len(trues) > 0 else float("nan")
+        except Exception:
+            auc = float("nan")
+
+        return avg_loss, auc
+
+    @torch.no_grad()
+    def get_embeddings(self, dataloader):
+        self.eval()
+        self.to(self.device)
+
+        all_feats = []
+        all_ids = []
+
+        for batch in dataloader:
+            # Qui assumiamo che il batch abbia almeno id,x
+            if len(batch) == 2:
+                ids, x = batch
+                token_types = None
+
+            elif len(batch) == 3:
+                ids, x, third = batch
+
+                # Se il terzo elemento è y, non token_types.
+                # Nel tuo formato classico (id,x,y), quindi qui ignoriamo y.
+                if third.ndim == 1:
+                    token_types = None
+                else:
+                    token_types = third
+
+            elif len(batch) == 4:
+                ids, x, token_types, y = batch
+
+            else:
+                raise ValueError(
+                    "Batch deve essere (id,x), (id,x,y), "
+                    "(id,x,token_types) o (id,x,token_types,y)"
+                )
+
+            x = x.long().to(self.device)
+
+            if token_types is not None:
+                token_types = token_types.long().to(self.device)
+
+            _, feats = self(x, token_types=token_types)
+
+            all_feats.append(feats.cpu().numpy())
+            all_ids.extend(ids)
+
+        embeddings = np.vstack(all_feats)
+        ids_array = np.array(all_ids)
+
+        return embeddings, ids_array
+
+    @torch.no_grad()
+    def predict_proba(self, dataloader):
+        self.eval()
+        self.to(self.device)
+
+        all_probs = []
+
+        for batch in dataloader:
+            if len(batch) == 2:
+                ids, x = batch
+                token_types = None
+
+            elif len(batch) == 3:
+                ids, x, third = batch
+
+                if third.ndim == 1:
+                    token_types = None
+                else:
+                    token_types = third
+
+            elif len(batch) == 4:
+                ids, x, token_types, y = batch
+
+            else:
+                raise ValueError(
+                    "Batch deve essere (id,x), (id,x,y), "
+                    "(id,x,token_types) o (id,x,token_types,y)"
+                )
+
+            x = x.long().to(self.device)
+
+            if token_types is not None:
+                token_types = token_types.long().to(self.device)
+
+            logits, _ = self(x, token_types=token_types)
+
+            if logits.shape[1] == 1:
+                prob_pos = torch.sigmoid(logits)
+                probs = torch.cat(
+                    [1 - prob_pos, prob_pos],
+                    dim=1
+                )
+            else:
+                probs = torch.softmax(logits, dim=1)
+
+            all_probs.append(probs.cpu())
+
+        return torch.cat(all_probs, dim=0)
+
+    @torch.no_grad()
+    def predict(self, dataloader):
+        probs = self.predict_proba(dataloader)
+        preds = torch.argmax(probs, dim=1)
+        return preds, probs
+    
 #------------------------------------------------------------------------------------------------
 # BEHRT
 #------------------------------------------------------------------------------------------------
@@ -2662,7 +3305,75 @@ class Med2VecModel(nn.Module):
 
         return train_losses, val_losses
 
+    # =========================
+    # EVALUATE
+    # =========================
+    @torch.no_grad()
+    def predict_proba(self, dataloader):
+        """
+        Ritorna le probabilità (sigmoid) per ogni paziente.
+        
+        Output:
+            probs: np.array shape (N,)
+        """
+        self.eval()
+        all_probs = []
 
+        for batch in dataloader:
+            if len(batch) == 3:
+                ids, x, y = batch
+            else:
+                ids, x = batch
+
+            x = x.long().to(self.device)
+
+            logits, _, _ = self(x)  # (B, 1)
+            # 🔹 Binary case (BCEWithLogitsLoss)
+            if logits.shape[1] == 1:
+                prob_pos = torch.sigmoid(logits)                  # (batch, 1)
+                probs = torch.cat([1 - prob_pos, prob_pos], dim=1)  # (batch, 2)
+
+            # 🔹 Multiclass case (se mai lo userai)
+            else:
+                probs = torch.softmax(logits, dim=1)              # (batch, C)
+
+            all_probs.append(probs.cpu())
+
+        return torch.cat(all_probs, dim=0)
+
+    @torch.no_grad()
+    def predict(self, dataloader, threshold=0.5):
+        """
+        Predizione con soglia custom.
+
+        Args:
+            threshold (float): soglia tra 0 e 1
+            return_probs (bool): se True ritorna anche le probabilità
+
+        Returns:
+            preds oppure (preds, probs)
+        """
+
+        probs = self.predict_proba(dataloader)  # (N,2) oppure (N,C)
+        # ----------------------------
+        # BINARIO
+        # ----------------------------
+        if probs.shape[1] == 2:
+            prob_pos = probs[:, 1]
+
+            if not (0.0 <= threshold <= 1.0):
+                raise ValueError("threshold must be in [0,1]")
+
+            preds = (prob_pos >= threshold).long()
+
+        # ----------------------------
+        # MULTICLASS (fallback)
+        # ----------------------------
+        else:
+            preds = torch.argmax(probs, dim=1)
+
+        return preds, probs
+    
     # =========================
     # EVALUATE
     # =========================
