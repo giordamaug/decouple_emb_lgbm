@@ -8,4 +8,4 @@ D57812;10;Other sickle-cell disorders with splenic sequestration
 D57813;10;Other sickle-cell disorders with cerebral vascular involvement
 D57818;10;Other sickle-cell disorders with crisis with other specified complication
 D57819;10;Other sickle-cell disorders with crisis, unspecified
-V782;9;Screening for sickle-cell disease or trait
+#V782;9;Screening for sickle-cell disease or trait
