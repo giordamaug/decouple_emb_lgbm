@@ -9,6 +9,36 @@ from sklearn.feature_selection import VarianceThreshold
 import itertools
 from sklearn.metrics import brier_score_loss
 
+# Radar plot
+def plot_radar(df, metrics):
+    N = len(metrics)
+    angles = np.linspace(0, 2*np.pi, N, endpoint=False).tolist()
+    angles += angles[:1]
+
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    for idx, row in df.iterrows():
+        values = row[metrics].tolist()
+        values += values[:1]
+
+        ax.plot(angles, values, linewidth=2, label=idx)
+        ax.fill(angles, values, alpha=0.1)
+
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(metrics, fontsize=11)
+
+    ax.set_ylim(0, 1)
+    ax.set_yticks(np.arange(0, 1.1, 0.1))
+    ax.set_yticklabels([f"{x:.1f}" for x in np.arange(0, 1.1, 0.1)])
+
+    ax.grid(True)
+    #plt.title("Model Comparison Radar Plot", pad=20)
+    #ax.legend(loc='best')
+    plt.legend(loc="upper right", bbox_to_anchor=(0.75, 1))
+    plt.tight_layout()
+    plt.show()
+    return fig
+
 def plot_group_distribution_with_event_boxplot(df, groupby="primary_disease_area", label_desc=None):
     df = df.copy()
 
