@@ -6,7 +6,7 @@ import random
 import numpy as np
 import torch
 from tqdm.notebook import tqdm
-from collections import defaultdict
+from collections import Counter, defaultdict
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -333,3 +333,21 @@ def remove_target_from_visit_sequences(sequences, targets):
         ]
         filtered_sequences[id] = filtered_seq
     return filtered_sequences
+
+def extract_event_type_counters(event_sequences):
+    rows = []
+    for patient_id, events in event_sequences.items():
+        counts = Counter(
+            event_type
+            for _, _, event_type in events
+        )
+        row = {"patient_id": patient_id}
+        for event_type, n in counts.items():
+            row[f"n_{event_type}"] = n
+        rows.append(row)
+    return (
+        pd.DataFrame(rows)
+        .fillna(0)
+        .set_index("patient_id")
+        .astype(int)
+    )
