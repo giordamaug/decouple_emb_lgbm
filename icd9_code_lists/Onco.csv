@@ -1,0 +1,53 @@
+icd9code,icd9string
+1537,Malignant neoplasm of splenic flexure
+2894,Hypersplenism
+28951,Chronic congestive splenomegaly
+28953,Neutropenic splenomegaly
+44283,Aneurysm of splenic artery
+90223,Injury to splenic artery
+90234,Injury to splenic vein
+90239,"Injury to portal and splenic veins, other"
+1591,"Malignant neoplasm of spleen, not elsewhere classified"
+1978,Secondary malignant neoplasm of other digestive organs and spleen
+20007,"Reticulosarcoma, spleen"
+20017,"Lymphosarcoma, spleen"
+20027,"Burkitt's tumor or lymphoma, spleen"
+20037,"Marginal zone lymphoma, spleen"
+20047,"Mantle cell lymphoma, spleen"
+20057,"Primary central nervous system lymphoma, spleen"
+20067,"Anaplastic large cell lymphoma, spleen"
+20077,"Large cell lymphoma, spleen"
+20087,"Other named variants of lymphosarcoma and reticulosarcoma, spleen"
+20107,"Hodgkin's paragranuloma, spleen"
+20117,"Hodgkin's granuloma, spleen"
+20127,"Hodgkin's sarcoma, spleen"
+20147,"Hodgkin's disease, lymphocytic-histiocytic predominance, spleen"
+20157,"Hodgkin's disease, nodular sclerosis, spleen"
+20167,"Hodgkin's disease, mixed cellularity, spleen"
+20177,"Hodgkin's disease, lymphocytic depletion, spleen"
+20197,"Hodgkin's disease, unspecified type, spleen"
+20207,"Nodular lymphoma, spleen"
+20217,"Mycosis fungoides, spleen"
+20227,"Sezary's disease, spleen"
+20237,"Malignant histiocytosis, spleen"
+20247,"Leukemic reticuloendotheliosis, spleen"
+20257,"Letterer-siwe disease, spleen"
+20267,"Malignant mast cell tumors, spleen"
+20277,"Peripheral T cell lymphoma, spleen"
+20287,"Other malignant lymphomas, spleen"
+20297,"Other and unspecified malignant neoplasms of lymphoid and histiocytic tissue, spleen"
+28950,"Disease of spleen, unspecified"
+28959,Other diseases of spleen
+7590,Anomalies of spleen
+86500,"Injury to spleen without mention of open wound into cavity, unspecified injury"
+86501,"Injury to spleen without mention of open wound into cavity, hematoma without rupture of capsule"
+86502,"Injury to spleen without mention of open wound into cavity, capsular tears, without major disruption of parenchyma"
+86503,"Injury to spleen without mention of open wound into cavity, laceration extending into parenchyma"
+86504,"Injury to spleen without mention of open wound into cavity, massive parenchymal disruption"
+86509,Other injury into spleen without mention of open wound into cavity
+86510,"Injury to spleen with open wound into cavity, unspecified injury"
+86511,"Injury to spleen with open wound into cavity, hematoma without rupture of capsule"
+86512,"Injury to spleen with open wound into cavity, capsular tears, without major disruption of parenchyma"
+86513,"Injury to spleen with open wound into cavity, laceration extending into parenchyma"
+86514,"Injury to spleen with open wound into cavity, massive parenchyma disruption"
+86519,Other injury to spleen with open wound into cavity
