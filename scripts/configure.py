@@ -1,4 +1,4 @@
-from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEREmbedder, TimeAwareLSTMEmbedder, DipoleEmbedder, CEHRBERTembedder
+from .embedding import FlexLSTMembedder, BEHRTembedder, COUNTEmbedder, TimeAwareLSTMEmbedder, DipoleEmbedder, CEHRBERTembedder
 from .embedding import StaticEmbedder, RETAINembedder, DOMEEmbedder, BINARYEmbedder, GRUEmbedder, GRUEDembedder, Med2VecEmbedder
 from .classifiers import FlexLSTMclassifier, DipoleClassifier, BEHRTclassifier, GRUclassifier, GRUDclassifier, Med2Vecclassifier
 
@@ -71,7 +71,7 @@ def configure(event_sequences, visit_sequences, event_sequences_type, labels, X_
                 "enable_plot": args.enable_plot
             }
         },
-        "CEHRBERT" : 
+        "CEHR-BERT" : 
         {   "func": CEHRBERTembedder,
             #"clf": BEHRTclassifier,
             "kwargs": {
@@ -115,20 +115,7 @@ def configure(event_sequences, visit_sequences, event_sequences_type, labels, X_
                 "enable_plot": args.enable_plot
             }
         },
-        "tLSTM" : 
-        {   "func": TimeAwareLSTMEmbedder,
-            "kwargs": {
-                "sequences": event_sequences,
-                "labels": labels,
-                "word_to_idx": word_to_idx,
-                "num_epochs": args.num_epochs,
-                "batch_size": args.batch_size,
-                "embed_size": args.embedding_dim,
-                "hidden_size": args.hidden_dim,
-                "enable_plot": args.enable_plot
-            }
-        },
-        "M2V" : 
+        "Med2Vec" : 
         {   "func": Med2VecEmbedder,
             "clf": Med2Vecclassifier,
                 "kwargs": {
@@ -198,13 +185,11 @@ def configure(event_sequences, visit_sequences, event_sequences_type, labels, X_
                 "enable_plot": args.enable_plot
             }
         },
-        "COUNTER": 
+        "EVENT-CNT": 
         {
-            "func": COUNTEREmbedder,
+            "func": COUNTEmbedder,
             "kwargs": {
-                "sequences": event_sequences,
-                "vocab": vocab | set('dead'),
-                "targets": [args.target_var],
+                "sequences": event_sequences_type,
                 "enable_plot": args.enable_plot
             }
         }
