@@ -2,10 +2,8 @@ import pandas as pd
 import numpy as np
 from .models import FlexibleLSTMModel, LSTMDataset, lstm_collate_fn
 from .models import BEHRTDataset, BEHRTModel
-from .models import RETAINModel, RETAINDataset, visit_collate_fn
 from .models import GRUModel, GRUDDataset, GRUDModel, grud_collate_fn
 from .models import DipoleDataset, DipoleModel, dipole_collate
-from .models import TimeAwareLSTMModel, timeaware_collate_fn, TimeAwareLSTMDataset
 from .models import DOME, co_occurrence_infectious_window,compute_directional_ppmi, riskmatrix_loop_fb_dome
 from .models import Med2VecDataset, Med2VecModel, med2vec_collate
 from .models import CEHRBERTModel,CEHRBERTDataset, cehrbert_collate_fn
@@ -16,6 +14,7 @@ from torch.nn.utils.rnn import pad_sequence
 from sklearn.preprocessing import LabelEncoder
 from tqdm.notebook import tqdm
 from IPython.display import clear_output
+from .utils import extract_event_type_counters
 
 plotsize = (4,3)
 
@@ -471,26 +470,19 @@ def BINARYEmbedder(sequences,
     test_df = df_bin.loc[valid_idx]
     return train_df, test_df
 
-def COUNTEREmbedder(sequences,
-                   targets,
-                   vocab=None,
+def COUNTEmbedder(sequences,
                    train_idx=None,
                    valid_idx=None,
                    enable_plot=False,
                    frame_tqdm=None,
                    frame_plot=None,
                     ):
-    all_idx = np.concatenate((train_idx, valid_idx), axis=0)
-    colnames = list(set(vocab) - set(list(targets)))
-    zdata = np.zeros(shape=(len(all_idx),len(colnames)))
-    df_bin = pd.DataFrame(zdata, columns=colnames, index=all_idx)
-    for id,events in tqdm(sequences.items(), total=len(sequences), desc="[COUNTER] contruct:"):
-        for event,date in events:
-            df_bin.loc[id][event] += 1
-    train_df = df_bin.loc[train_idx]
-    test_df = df_bin.loc[valid_idx]
+    
+    df_cnt = extract_event_type_counters(sequences)
+    train_df = df_cnt.loc[train_idx]
+    test_df = df_cnt.loc[valid_idx]
     if enable_plot:
-        print(f"X_binary train shape {train_df.shape} - X_binary test shape {test_df.shape}")
+        print(f"Counting event types: {' '.join(list(df_cnt.columns))}")
     return train_df, test_df
 
 def GRUEmbedder(sequences,
