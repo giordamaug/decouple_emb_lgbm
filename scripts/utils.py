@@ -164,6 +164,56 @@ def pie_plot(dataset, pathology_field, pathologies):
     plt.tight_layout()
     plt.show()
 
+def plot_event_boxplot(df, groupby="base_pathology_area", label_desc=None):
+    df = df.copy()
+
+    df['event_length'] = df['events'].apply(len)
+    df = df.dropna(subset=[groupby, 'event_length'])
+    if label_desc is not None:
+        df[groupby] = df[groupby].map(label_desc)
+        counts = df[groupby].value_counts()
+        counts = counts.rename(label_desc).fillna(0)
+    else:
+        counts = df[groupby].value_counts()
+
+    values = counts.values
+    labels = counts.index
+    print(labels)
+
+    if values.sum() == 0:
+        raise ValueError(
+            f"Nessun dato valido per {groupby}. "
+            f"Controlla il mapping e i valori originali della colonna."
+        )
+
+    palette = sns.color_palette("tab10", len(labels))
+    palette_dict = dict(zip(labels, palette))
+
+    def autopct_abs(pct):
+        total = np.sum(values)
+        val = int(round(pct * total / 100.0))
+        return f'{val}' if val > 0 else ''
+
+    fig, ax = plt.subplots(figsize=(10, 3))
+
+    sns.boxplot(
+        data=df,
+        x=groupby,
+        y='event_length',
+        order=labels,
+        hue=groupby,
+        palette=palette_dict,
+        dodge=False,
+        legend=False,
+        ax=ax
+    )
+
+    ax.set_title("(B) Event Length Distribution")
+    ax.tick_params(axis='x', rotation=90)
+
+    plt.tight_layout()
+    plt.show()
+
 #-------------------------------------------------------------------------------------
 # Sequence utility functions
 #-------------------------------------------------------------------------------------
